@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="MyApp" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Take And Give</title>
+
+    <!-- Bootstrap -->
+    <link href="app/css/bootstrap.min.css" rel="stylesheet">
+    <link href="app/css/images.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type= "text/javascript" src = "app/js/countries.js"></script>
+</head>
+
+<body ng-controller="MainController as main" style="background: #eee">
+
+<div style="position: fixed;top: 0px;left: 0px;right: 0px;z-index: 1;">
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#/" class="navbar-brand" title="Home Page"><i class="fa fa-home fa-lg" ></i>&nbsp;TAG</span></a>
+                <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navHeaderCollapase">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navHeaderCollapase">
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="main.loggedIn"><div ng-bind="'Hello '+main.user.username" class="navbar-brand"></div></li>
+                    <li ng-show="main.loggedIn"><a><i>&nbsp;</i></a></li>
+                    <li ng-show="main.loggedIn"><a href="/chat"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>
+                    <li ng-show="main.loggedIn"><a href="#/profile"><i class="fa fa-user fa-lg" title="Profile"></i>&nbsp;Profile</a></li>
+                    <li ng-show="main.loggedIn"><a href="#/myStuff"><i class="fa fa-upload fa-lg" title="Upload My Stuff"></i>&nbsp;Upload My Stuff</a></li>
+                    <li ng-show="main.loggedIn"><a href="#/cart"><i class="fa fa-cart-arrow-down fa-lg" title="Cart"></i>&nbsp;Cart</a></li>
+                    <li ng-show="!main.loggedIn"><a href="#/login"><i class="fa fa-sign-in fa-lg" title="Login"></i>&nbsp;Login</a></li>
+                    <li ng-show="!main.loggedIn"><a href="#/signup"><i class="fa fa-user-plus fa-lg" title="SignUp"></i>&nbsp;SignUp</a></li>
+                    <li ng-show="main.loggedIn"><a href="#" ng-click="main.doLogout()"><i class="fa fa-sign-in fa-lg" title="Logout"></i>&nbsp;Logout&nbsp;&nbsp;</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<main class="container" style="padding-top: 110px;" >
+    <div ui-view></div>
+</main>
+
+
+
+<script type="text/javascript" src="app/js/angular.min.js"></script>
+<script type="text/javascript" src="app/js/toArrayFilter.js"></script>
+<script type="text/javascript" src="app/js/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+<script type="text/javascript" src="app/js/ng-file-upload.min.js"></script>
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-route.min.js"> </script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"> </script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!--<script type="text/javascript" src="app/js/jquery-1.11.3.js"></script>-->
+<!--Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="app/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+
+
+<!--Services-->
+<script type="text/javascript" src="app/services/authService.js"></script>
+<script type="text/javascript" src="app/services/userService.js"></script>
+<script type="text/javascript" src="app/services/storyService.js"></script>
+<script type="text/javascript" src="app/services/fileUploadService.js"></script>
+
+<!--Directive-->
+
+<!--Controllers-->
+<script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/userCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/storyCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/chatCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/example.js"></script>
+<script type="text/javascript" src="app/controllers/fileUploadCtrl.js"></script>
+<script type="text/javascript" src="app/app.routes.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
+
+
+
+</body>
+</html>

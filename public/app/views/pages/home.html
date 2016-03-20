@@ -1,0 +1,63 @@
+
+<div class="jumbotron text-center" ng-if="!main.loggedIn">
+    <div>
+        <h1>Home page!</h1>
+    </div>
+
+    <div>
+        <p>Login to get started</p>
+        <a href="#/login" class="btn btn-primary">Login</a>
+    </div>
+</div>
+
+<div class="containers"  ng-if="main.loggedIn" style="text-align: center">
+    <div class="container-fluid bg-1 text-center">
+        <div class="text-center">
+            <h2>Welcome To Take And Give</h2><br><br>
+        </div>
+    </div>
+    <span>Search By   </span>
+    Category: <input type="text" ng-model="search.category"/>
+    Size: <input type="text" ng-model="search.size"/>
+    User name: <input type="text" ng-model="search.username"/><br><br>
+
+    <div class="img" ng-repeat="image in up.allImages | toArray | filter: search">
+        <div>
+            <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
+            <div class="desc">{{image.category}} - {{image.size}} - {{image.username}}</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+        <!--
+    <img ng-src="data:image.contentType;base64,{{image.data}}">
+
+        <div calss="row" ng-if="main.loggedIn" ng-controller="StoryController as story">
+
+        <div class="col-md-4">
+         <div class="row">
+             <div class="panel panel-primary">
+                 <div class="panel-heading">Write a Story</div>
+
+                 <div class="panel-body">
+                     <form ng-submit="story.createStory()">
+                         <input class="form-control input-lg" type="text" name="story" ng-model="story.storyData.content" placeholder="..." required>
+                     </form>
+                 </div>
+             </div>
+             <div class="panel panel-success">
+                 <div class="panel-heading">Your Stories</div>
+                 <div class="panel-body" ng-repeat="myStory in story.stories">
+                     <p> {{myStory.content}}</p>
+                 </div>
+             </div>
+         </div>
+        </div>
+        </div>
+        -->
