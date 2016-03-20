@@ -40,6 +40,7 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
     // adds the fields coming from the request in the image object
     image.username = req.body.username;
     image.category = req.body.category;
+    image.toUse = req.body.toUse;
     image.size = req.body.size;
     /*image.city = req.body.main.user.city;
      image.country = req.body.main.user.country;*/

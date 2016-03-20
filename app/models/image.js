@@ -11,6 +11,7 @@ var ImagesSchema = new Schema({
     country: String,
     city: String,
     category: String,
+    toUse: String,
     size: String,
     image: { data: Buffer, contentType: String },
     datasrc: String,

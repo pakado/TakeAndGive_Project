@@ -7,7 +7,6 @@
 <div class="containers" style="text-align: center" ng-if="main.loggedIn">
     <div class="container" >
         <h2 >My Stuff - Upload Your Stuff Here</h2>
-        <p>Saved image!</p>
 
         <form method="post" action="/api/image" enctype="multipart/form-data" class="col-sm-6 col-md-4 col-md-offset-4" >
             <!--Single Image with validations-->
@@ -15,9 +14,9 @@
             <input class="from-control"  type="text" name="country" placeholder="user country" ng-model="main.user.country" hidden>
             <input class="from-control"  type="text" name="city" placeholder="city" ng-model="main.user.city" hidden>
             <input class="from-control"  type="text" name="username" placeholder="username" ng-model="up.imageDetails.username" hidden>
+            <input class="from-control"  type="text" name="toUse" placeholder="category" ng-model="up.imageDetails.toUse" hidden>
             <input class="from-control"  type="text" name="category" placeholder="category" ng-model="up.imageDetails.category" hidden>
             <input class="from-control"  type="text" name="size" placeholder="size" ng-model="up.imageDetails.size" hidden>
-
 
             <select class="from-control" ng-model="up.imageDetails.category" required>
                 <option value="">---Please select Category---</option> <!-- not selected / blank option -->
@@ -36,6 +35,11 @@
                 <option value="Pants Women" >Pants Women</option>
                 <option value="Other" >Other</option>
             </select>
+            <select class="from-control" ng-model="up.imageDetails.toUse">
+                <option value="">---Please select to use---</option> <!-- not selected / blank option -->
+                <option value="renting">Renting</option>
+                <option value="delivery">Delivery</option>
+            </select><br>
 
             <select class="from-control" ng-model="up.imageDetails.size">
                 <option value="">---Please select size---</option> <!-- not selected / blank option -->
@@ -54,13 +58,14 @@
             <strong><spand class="alert-danger" ng-bind="up.error" ></spand></strong><br><br>
         </form>
     </div>
-    <div><span>&nbsp; Search By   </span>
-        Category: <input type="text" ng-model="search.category"/>
-        Size: <input type="text" ng-model="search.size"/><br><br></div>
+    <span> Search By   </span><br>
+        Category: <input type="text" ng-model="search.category"/><br>
+        Size: <input type="text" ng-model="search.size" style="width: 174px;border-left-width: 2px;margin-left: 30px;"/><br><br>
     <div class="img" ng-repeat="image in up.images | toArray | filter: search">
         <div>
             <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">
             <div class="desc">{{image.category}} - {{image.size}}</div>
+            <div><button value="delete">Delete</button><span>&nbsp;For:{{image.toUse}}</span></div>
         </div>
     </div>
 </div>

@@ -9,7 +9,8 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
         vm.imageDetails = {};
         vm.imageDetails.category= "";
         vm.imageDetails.size= "";
-        vm.imageDetails.username
+        vm.imageDetails.toUse = "";
+        vm.imageDetails.username = "";
         vm.error= "";
         vm.allImages = {};
         vm.images = {};
