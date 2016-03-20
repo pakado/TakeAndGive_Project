@@ -29,7 +29,6 @@ angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','exampl
             }
         }
     })
-
     .config(function ($httpProvider,$compileProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//);
