@@ -7,6 +7,10 @@ angular
     ])
     .config( function($stateProvider, $urlRouterProvider) {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 07567c1290ce29e332b3eb9f40e94a474d1541da
         $stateProvider
             .state('home', {
                 url: '/',
