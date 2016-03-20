@@ -1,0 +1,13 @@
+<html>
+<head>
+<script type= "text/javascript" src = "countries.js"></script>
+</head>
+<body>
+
+Select Country (with states):   <select id="country" name ="country"></select>
+Select State: <select name ="state" id ="state"></select>
+ <script language="javascript">
+populateCountries("country", "state");
+ </script>
+ </body>
+</html>

@@ -1,0 +1,66 @@
+
+<div ng-if="!main.loggedIn" class="col-sm-10 col-md-5 col-md-offset-5">
+    <il><a href="#/">Login Or SignUp Please</a></il>
+</div>
+
+
+<div class="containers" style="text-align: center" ng-if="main.loggedIn">
+    <div class="container" >
+        <h2 >My Stuff - Upload Your Stuff Here</h2>
+        <p>Saved image!</p>
+
+        <form method="post" action="/api/image" enctype="multipart/form-data" class="col-sm-6 col-md-4 col-md-offset-4" >
+            <!--Single Image with validations-->
+
+            <input class="from-control"  type="text" name="country" placeholder="user country" ng-model="main.user.country" hidden>
+            <input class="from-control"  type="text" name="city" placeholder="city" ng-model="main.user.city" hidden>
+            <input class="from-control"  type="text" name="username" placeholder="username" ng-model="up.imageDetails.username" hidden>
+            <input class="from-control"  type="text" name="category" placeholder="category" ng-model="up.imageDetails.category" hidden>
+            <input class="from-control"  type="text" name="size" placeholder="size" ng-model="up.imageDetails.size" hidden>
+
+
+            <select class="from-control" ng-model="up.imageDetails.category" required>
+                <option value="">---Please select Category---</option> <!-- not selected / blank option -->
+                <option value="Accessories">Accessories</option>
+                <option value="Dress" > Dress</option>
+                <option value="Skirt" > Skirt</option>
+                <option value="Jacket Men" >Jacket Men</option>
+                <option value="Jacket Women" >Jacket Women</option>
+                <option value="Shirt Men" >Shirt Men</option>
+                <option value="Shirt Women" >Shirt Women</option>
+                <option value="Shoes Men" >Shoes Men</option>
+                <option value="Shoes Women" >Shoes Women</option>
+                <option value="Shorts Men" >Shorts Men</option>
+                <option value="Shorts Women" >Shorts Women</option>
+                <option value="Pants Men" >Pants Men</option>
+                <option value="Pants Women" >Pants Women</option>
+                <option value="Other" >Other</option>
+            </select>
+
+            <select class="from-control" ng-model="up.imageDetails.size">
+                <option value="">---Please select size---</option> <!-- not selected / blank option -->
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+            </select><br><br>
+
+            <input type="file" ngf-select ng-model="up.file" name="image"  accept="image/*"  ngf-max-size="20MB"
+                   style="height: 30px;width: 428px;padding-left: 128px;" required />
+            <input type="submit" value="Save Image" ng-click="up.submit()" class="btn btn-success"/><!--ng-mouseover="up.test()"-->
+
+            <strong><spand class="alert-danger" ng-bind="up.error" ></spand></strong><br><br>
+        </form>
+    </div>
+    <div><span>&nbsp; Search By   </span>
+        Category: <input type="text" ng-model="search.category"/>
+        Size: <input type="text" ng-model="search.size"/><br><br></div>
+    <div class="img" ng-repeat="image in up.images | toArray | filter: search">
+        <div>
+            <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">
+            <div class="desc">{{image.category}} - {{image.size}}</div>
+        </div>
+    </div>
+</div>
