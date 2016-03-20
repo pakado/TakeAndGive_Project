@@ -22,8 +22,8 @@
     User name: <input type="text" ng-model="search.username"/><br><br>
 
     <div class="img" ng-repeat="image in up.allImages | toArray | filter: search">
-        <div>
-            <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
+        <div class="images">
+            <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
             <div class="desc">{{image.category}} - {{image.size}} - {{image.username}}</div>
         </div>
     </div>

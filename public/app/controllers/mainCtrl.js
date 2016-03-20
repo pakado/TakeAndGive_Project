@@ -79,5 +79,4 @@ angular.module('mainCtrl', ['authService'])
 
         return true;
     }
-
 });

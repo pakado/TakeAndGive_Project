@@ -11,6 +11,9 @@
     <link href="app/css/bootstrap.min.css" rel="stylesheet">
     <link href="app/css/images.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
 
@@ -21,44 +24,67 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type= "text/javascript" src = "app/js/countries.js"></script>
+    <style>
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(http://smallenvelop.com/wp-content/uploads/2014/08/Preloader_3.gif) center no-repeat #fff;
+        }
+    </style>
+    <script>
+        //paste this code under the head tag or in a separate js file.
+        // Wait for window load
+        $(window).load(function() {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+        });
+    </script>
+
 </head>
 
 <body ng-controller="MainController as main" style="background: #eee">
+<div class="se-pre-con"></div>
 
 <div style="position: fixed;top: 0px;left: 0px;right: 0px;z-index: 1;">
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#/" class="navbar-brand" title="Home Page"><i class="fa fa-home fa-lg" ></i>&nbsp;TAG</span></a>
-                <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navHeaderCollapase">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#/" class="navbar-brand" title="Home Page"><i class="fa fa-home fa-lg" ></i>&nbsp;TAG</span></a>
+                    <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navHeaderCollapase">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse navHeaderCollapase">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-show="main.loggedIn"><div ng-bind="'Hello '+main.user.username" class="navbar-brand"></div></li>
+                        <li ng-show="main.loggedIn"><a><i>&nbsp;</i></a></li>
+                        <li ng-show="main.loggedIn"><a href="/chat"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>
+                        <li ng-show="main.loggedIn"><a href="#/profile"><i class="fa fa-user fa-lg" title="Profile"></i>&nbsp;Profile</a></li>
+                        <li ng-show="main.loggedIn"><a href="#/myStuff"><i class="fa fa-upload fa-lg" title="Upload My Stuff"></i>&nbsp;Upload My Stuff</a></li>
+                        <li ng-show="main.loggedIn"><a href="#/cart"><i class="fa fa-cart-arrow-down fa-lg" title="Cart"></i>&nbsp;Cart</a></li>
+                        <li ng-show="!main.loggedIn"><a href="#/login"><i class="fa fa-sign-in fa-lg" title="Login"></i>&nbsp;Login</a></li>
+                        <li ng-show="!main.loggedIn"><a href="#/signup"><i class="fa fa-user-plus fa-lg" title="SignUp"></i>&nbsp;SignUp</a></li>
+                        <li ng-show="main.loggedIn"><a href="#" ng-click="main.doLogout()"><i class="fa fa-sign-in fa-lg" title="Logout"></i>&nbsp;Logout&nbsp;&nbsp;</a></li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="collapse navbar-collapse navHeaderCollapase">
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-show="main.loggedIn"><div ng-bind="'Hello '+main.user.username" class="navbar-brand"></div></li>
-                    <li ng-show="main.loggedIn"><a><i>&nbsp;</i></a></li>
-                    <li ng-show="main.loggedIn"><a href="/chat"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>
-                    <li ng-show="main.loggedIn"><a href="#/profile"><i class="fa fa-user fa-lg" title="Profile"></i>&nbsp;Profile</a></li>
-                    <li ng-show="main.loggedIn"><a href="#/myStuff"><i class="fa fa-upload fa-lg" title="Upload My Stuff"></i>&nbsp;Upload My Stuff</a></li>
-                    <li ng-show="main.loggedIn"><a href="#/cart"><i class="fa fa-cart-arrow-down fa-lg" title="Cart"></i>&nbsp;Cart</a></li>
-                    <li ng-show="!main.loggedIn"><a href="#/login"><i class="fa fa-sign-in fa-lg" title="Login"></i>&nbsp;Login</a></li>
-                    <li ng-show="!main.loggedIn"><a href="#/signup"><i class="fa fa-user-plus fa-lg" title="SignUp"></i>&nbsp;SignUp</a></li>
-                    <li ng-show="main.loggedIn"><a href="#" ng-click="main.doLogout()"><i class="fa fa-sign-in fa-lg" title="Logout"></i>&nbsp;Logout&nbsp;&nbsp;</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
+        </nav>
+    </div>
 
 
-<main class="container" style="padding-top: 110px;" >
-    <div ui-view></div>
-</main>
+    <main class="container" style="padding-top: 110px;" >
+        <div ui-view></div>
+    </main>
 
 
 <script type="text/javascript" src="app/js/angular.min.js"></script>
@@ -96,7 +122,6 @@
 <script type="text/javascript" src="app/controllers/fileUploadCtrl.js"></script>
 <script type="text/javascript" src="app/app.routes.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
-
 
 
 </body>
