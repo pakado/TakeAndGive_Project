@@ -29,10 +29,6 @@ angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','exampl
             }
         }
     })
-<<<<<<< HEAD
-=======
-
->>>>>>> 07567c1290ce29e332b3eb9f40e94a474d1541da
     .config(function ($httpProvider,$compileProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//);
