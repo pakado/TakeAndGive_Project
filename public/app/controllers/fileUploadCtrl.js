@@ -2,7 +2,7 @@
  * Created by pkdo10 on 1/26/2016.
  */
 angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
-    .controller('upController',['Upload','$window','fileUpload','Auth',function(Upload,$window,fileUpload,Auth,$scope){
+    .controller('upController',['Upload','$window','fileUpload','Auth',function(Upload,$window,fileUpload,Auth){
 
         var vm = this;
         var user;
@@ -49,7 +49,6 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
                 return;
             }
 
-
             else if(/*vm.upload_form.file.$valid && */vm.file) { //check if from is valid
                 //vm.upload(vm.file); //call upload function
             }
@@ -58,54 +57,24 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
             }
         };
 
-       /* vm.upload = function (file) {
-            fileUpload.uploadImage(vm.imageDetails, vm.file)
-                .then(function(response){
-                    console.log("I am in the ctrl of upload"+ response);
-                    vm.getImages();
-                    vm.imageDetails.category= "";
-                    vm.imageDetails.size= "";
-                    vm.error ="";
-                    vm.file = null;
-                });
-        };*/
 
         vm.getImages = function(){
             fileUpload.getAllImagesPerUser(vm.imageDetails.username).success(function(data){
                 vm.images = data;
             });
         };
-       /* vm.upload = function (file) {
 
-           Upload.upload({
-                url: 'http://localhost:3000/upload', //webAPI exposed to upload the file  http://localhost:3000/upload
-                data:{file:file, user: vm.user} //pass file as data, should be user ng-model
-            }).then(function (resp) { //upload function returns a promise
-                if(resp.data.error_code === 0){ //validate success
-                    $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+        vm.delete = function(id){
+            if(confirm("Are you sure you want to delete the photo") == true){
+                fileUpload.deleteImage(id).success(function(){
+                    console.log("You deleted a photo");
+                    vm.getImages();
+                    alert("The Photo deleted")
+                });
+            }else{
+                console.log("You've canceled the deleted of the picture");
+            }
 
-                    vm.imageDetails.path = resp.data.req.path;
+        }
 
-                    fileUpload.uploadImage(vm.imageDetails)
-                        .then(function(response){
-                            console.log("I am in the ctrl of upload"+ response);
-                            vm.getImages();
-                            vm.imageDetails.category= "";
-                            vm.imageDetails.size= "";
-                            vm.error ="";
-                            vm.file = null;
-                        });
-                } else {
-                    $window.alert('an error occured');
-                }
-            }, function (resp) { //catch error
-                console.log('Error status: ' + resp.status);
-                $window.alert('Error status: ' + resp.status);
-            }, function (evt) {
-                console.log(evt);
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
-            });
-        };*/
 }]);

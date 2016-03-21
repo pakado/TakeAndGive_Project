@@ -232,6 +232,25 @@ api.put('/update:_id', function(req, res){
     });
 });
 
+api.delete('/delete/:_id', function(req, res){
+
+    var id = req.params._id;
+    Images.findByIdAndRemove({_id: id}, function(err, deleteObject){
+        if(err){
+            console.log(err);
+            res.status(500).send();
+        }else{
+            if(!deleteObject){
+                console.log("Image Not Exist");
+                res.status(500).send();
+            }else{
+                console.log("Image Exist And Remove From DB");
+                res.send(deleteObject);
+            }
+        }
+    });
+});
+/*
 api.delete('/delete/:id', function(req, res){
     var id = req.param.id;
 
@@ -249,7 +268,7 @@ api.delete('/delete/:id', function(req, res){
         }
     });
 });
-
+*/
 
 api.use(function(req, res, next){
 

@@ -1,4 +1,5 @@
 
+
 div.img {
     margin: 5px;
     border: 1px solid #ccc;
@@ -19,12 +20,17 @@ div.img img {
 }
 
 div.desc {
-    padding: 15px;
+    padding: 10px;
     text-align: center;
+
 }
 .zoom {
     width: 0px;
     position: absolute;
     transition: width 0.3s linear 0s;
+}
+
+div.mButton{
+    margin-bottom: 5px;
 }
 
