@@ -28,99 +28,7 @@ function createToken(user){
 
 module.exports = function(app, express, io){
 
-    var api = express.Router();
-
-//upload
-
-// save the title and image
-api.post('/image', multer({ dest: './public/uploads' }).single('image'), function(req, res, next) {
-    // creates an object of the image model
-    var image = new Images();
-
-    // adds the fields coming from the request in the image object
-    image.username = req.body.username;
-    image.category = req.body.category;
-    image.toUse = req.body.toUse;
-    image.size = req.body.size;
-    /*image.city = req.body.main.user.city;
-     image.country = req.body.main.user.country;*/
-    image.datasrc = fs.readFileSync(req.file.path).toString('base64');
-    //image.image.data = fs.readFileSync(req.file.path).toString('base64');
-    image.image.contentType = req.file.mimetype;
-
-    // save image
-    image.save(function(err) {
-        // check for errors
-        if(err) {
-            // go to the error handler middleware
-            return next(err);
-        }
-
-        // if no errors, log this message in the console
-        console.log('image saved in mongodb!');
-
-        // delete image from uploads directory
-        fs.unlink(req.file.path, function(err) {
-            // check for errors
-            if(err) {
-                // go to the error handler middleware
-                return next(err);
-            }
-
-            // if no errors, log this message in the console
-            console.log('image deleted from server!');
-
-            console.log("Save the image!!!");
-            res.req.baseUrl = '';
-            res.redirect('/#/myStuff');
-        });
-    });
-});
-
-//finish upload
-
-//get the image
-// http://localhost:3000/images/
-// displays a list of all images
-api.get('/image',function(req, res, next) {
-    // get all images
-    Images.find({}, function(err, images) {
-        // check for errors
-        if(err) {
-            // go to the error handler middleware
-            //return next(err);
-            console.log(err);
-            res.send(err);
-            return;
-        }
-
-        // if no errors, go to the list page
-        res.json(images);
-
-    });//.sort({ _id: 1 });
-});
-
-// http://localhost:3000/images/:id
-// display an image
-api.get('/imageperuser/:username',function(req, res, next) {
-    // get an image that its id be equals the value sent by url parameter
-
-    Images.find({
-        username: req.params.username.replace(':','')
-    }).exec(function(err, images) {
-        // check for errors
-        if(err) {
-            // adds the http status code to the err object
-            err.status = 422;
-
-            // go to the error handler middleware
-            return next(err);
-        }
-        // if no errors, go to the image page
-        res.json(images);
-        //res.json(images.toString('base64'));
-    });
-});
+var api = express.Router();
 
 //finish to get image
 api.post('/signup', function(req, res){
@@ -190,7 +98,6 @@ api.post('/login', function(req, res) {
 });
 
 
-
 api.put('/update:_id', function(req, res){
 
     var user = req.body.user;
@@ -232,10 +139,159 @@ api.put('/update:_id', function(req, res){
     });
 });
 
+
+//upload
+
+// save the title and image
+api.post('/image', multer({ dest: './public/uploads' }).single('image'), function(req, res, next) {
+    // creates an object of the image model
+    var image = new Images();
+
+    // adds the fields coming from the request in the image object
+    image.username = req.body.username;
+    image.category = req.body.category;
+    image.toUse = req.body.toUse;
+    image.size = req.body.size;
+    image.status = 'home';
+    image.userRequest = 'no request';
+    /*image.city = req.body.main.user.city;
+     image.country = req.body.main.user.country;*/
+    image.datasrc = fs.readFileSync(req.file.path).toString('base64');
+    //image.image.data = fs.readFileSync(req.file.path).toString('base64');
+    image.image.contentType = req.file.mimetype;
+
+    // save image
+    image.save(function(err) {
+        // check for errors
+        if(err) {
+            // go to the error handler middleware
+            return next(err);
+        }
+
+        // if no errors, log this message in the console
+        console.log('image saved in mongodb!');
+
+        // delete image from uploads directory
+        fs.unlink(req.file.path, function(err) {
+            // check for errors
+            if(err) {
+                // go to the error handler middleware
+                return next(err);
+            }
+
+            // if no errors, log this message in the console
+            console.log('image deleted from server!');
+
+            console.log("Save the image!!!");
+            res.req.baseUrl = '';
+            res.redirect('/#/myStuff');
+        });
+    });
+});
+
+//finish upload
+
+//get the image
+// http://localhost:3000/images/
+// displays a list of all images
+api.get('/image',function(req, res, next) {
+    // get all images
+    Images.find({status : 'home'}, function(err, images) {
+        // check for errors
+        if(err) {
+            // go to the error handler middleware
+            //return next(err);
+            console.log(err);
+            res.send(err);
+            return;
+        }
+
+        // if no errors, go to the list page
+        res.json(images);
+
+    });//.sort({ _id: 1 });
+});
+
+// http://localhost:3000/images/:id
+// display an image
+api.get('/imageperuser/:username',function(req, res, next) {
+    // get an image that its id be equals the value sent by url parameter
+
+    Images.find({
+        username: req.params.username.replace(':','')
+    }).exec(function(err, images) {
+        // check for errors
+        if(err) {
+            // adds the http status code to the err object
+            err.status = 422;
+
+            // go to the error handler middleware
+            return next(err);
+        }
+        // if no errors, go to the image page
+        res.json(images);
+        //res.json(images.toString('base64'));
+    });
+});
+
+
+
+api.get('/getCartImage/:username',function(req, res, next) {
+    // get an image that its id be equals the value sent by url parameter
+
+    Images.find({
+        userRequest: req.params.username.replace(':',''),
+        status: 'Waiting for approval'
+    }).exec(function(err, images) {
+        // check for errors
+        if(err) {
+            // adds the http status code to the err object
+            err.status = 422;
+
+            // go to the error handler middleware
+            return next(err);
+        }
+        // if no errors, go to the image page
+        res.json(images);
+        //res.json(images.toString('base64'));
+    });
+});
+
+api.put('/updateImage/:_id', function(req, res){
+
+    var id = req.params._id;
+    Images.findOne({
+        _id: id
+    }).select('userRequest status').exec(function(err, foundObject){
+        if(err){
+            console.log(err);
+            res.status(500).send();
+        }else{
+            if(!foundObject){
+                res.status(404).send();
+            }else {
+                    foundObject.userRequest = req.body.userRequest;
+                    foundObject.status = 'Waiting for approval';
+
+                    foundObject.save(function(err, updateObject){
+                        if(err){
+                            console.log(err);
+                            res.status(500).send();
+                        }else{
+                            res.send(updateObject);
+                        }
+                    })
+                }
+        }
+    });
+});
+
 api.delete('/delete/:_id', function(req, res){
 
     var id = req.params._id;
-    Images.findByIdAndRemove({_id: id}, function(err, deleteObject){
+    Images.findByIdAndRemove({
+        _id: id
+    },function(err, deleteObject){
         if(err){
             console.log(err);
             res.status(500).send();

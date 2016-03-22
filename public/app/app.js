@@ -2,7 +2,7 @@
  * Created by pkdo1 on 11/30/2015.
  */
 
-angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','example','fileUpload','angular-toArrayFilter'])
+angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','example','fileUpload','cartCtrl','angular-toArrayFilter'])
     .run(function($window, $location){
         var idleTime = 0;
 

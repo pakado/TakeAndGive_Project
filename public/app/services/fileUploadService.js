@@ -2,15 +2,9 @@
  * Created by pkdo10 on 1/30/2016.
  */
 angular.module('fileUploadService',[])
-    .service('fileUpload', function($http,$location){
-
-      /*  this.uploadImage = function(imageDetails){
-          //  return $http.post('/api/uploadImage',imageDetails);
-            return $http.post('/uploadImage',imageDetails);
-        };*/
+    .service('fileUpload', function($http){
 
         this.getAllImagesPerUser = function(username){
-           // return $http.post('/api/images',{
             return $http.get('/api/imageperuser/:' + username ,{
                 username: username
             })
@@ -20,7 +14,6 @@ angular.module('fileUploadService',[])
         };
 
         this.getAllImages = function(){
-            //return $http.get('/api/images')
             return $http.get('/api/image', {})
             .success(function(data){
                 return data;
@@ -28,8 +21,17 @@ angular.module('fileUploadService',[])
         };
 
         this.deleteImage = function(_id){
-            return $http.delete('api/delete/' + _id).success( function(data){
+            return $http.delete('/api/delete/' + _id).success( function(data){
                 return data;
             });
         };
+
+        this.updateImage = function(_id, username){
+            return $http.put('/api/updateImage/' + _id, {
+                userRequest : username
+            }).success(function(data){
+                return data;
+            })
+
+        }
 });

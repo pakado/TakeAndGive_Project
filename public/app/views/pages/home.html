@@ -25,7 +25,7 @@
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
             <div class="desc">{{image.category}} - {{image.size}} - {{image.username}}</div>
-            <div class="mButton"><button value="toUse">{{image.toUse}}</button></div>
+            <div class="mButton"><button value="toUse" ng-click="up.updateStatusImage(image._id)">{{image.toUse}}</button></div>
         </div>
     </div>
 </div>

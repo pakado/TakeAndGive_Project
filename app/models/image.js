@@ -15,7 +15,9 @@ var ImagesSchema = new Schema({
     size: String,
     image: { data: Buffer, contentType: String },
     datasrc: String,
-    created: { type: Date, defauly: Date.now}
+    created: { type: Date, defauly: Date.now},
+    userRequest: String,
+    status: String
 
 });
 

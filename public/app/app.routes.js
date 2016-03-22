@@ -20,7 +20,8 @@ angular
             })
             .state('cart',{
                 url: '/cart',
-                templateUrl: 'app/views/pages/cart.html'
+                templateUrl: 'app/views/pages/cart.html',
+                controller: "cartController as cart"
             })
             .state('login', {
                 url: '/login',
