@@ -9,5 +9,6 @@ angular.module('cartService', [])
             return $http.get('/api/getCartImage/:' + username).success( function(data){
                 return data;
             });
-        }
+        };
+
     });

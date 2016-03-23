@@ -37,6 +37,11 @@ angular
                 templateUrl: 'app/views/pages/chat.html',
                 controller: "chatCtrl as chat"
             })
+            .state('permission', {
+                url: '/permission',
+                templateUrl: 'app/views/pages/permission.html',
+                controller: "permissionController as per"
+            })
             .state('testUp', {
                 url: '/testUp',
                 templateUrl: 'app/views/pages/testUp.html',

@@ -154,6 +154,7 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
     image.size = req.body.size;
     image.status = 'home';
     image.userRequest = 'no request';
+    image.permission = "No";
     /*image.city = req.body.main.user.city;
      image.country = req.body.main.user.country;*/
     image.datasrc = fs.readFileSync(req.file.path).toString('base64');
@@ -257,12 +258,34 @@ api.get('/getCartImage/:username',function(req, res, next) {
     });
 });
 
+api.get('/getPermissionImage/:username',function(req, res, next) {
+    // get an image that its id be equals the value sent by url parameter
+
+    Images.find({
+        username: req.params.username.replace(':',''),
+        status: 'Waiting for approval',
+        permission: 'No'
+    }).exec(function(err, images) {
+        // check for errors
+        if(err) {
+            // adds the http status code to the err object
+            err.status = 422;
+
+            // go to the error handler middleware
+            return next(err);
+        }
+        // if no errors, go to the image page
+        res.json(images);
+        //res.json(images.toString('base64'));
+    });
+});
+
 api.put('/updateImage/:_id', function(req, res){
 
     var id = req.params._id;
     Images.findOne({
         _id: id
-    }).select('userRequest status').exec(function(err, foundObject){
+    }).select('userRequest status toUse').exec(function(err, foundObject){
         if(err){
             console.log(err);
             res.status(500).send();
@@ -270,18 +293,37 @@ api.put('/updateImage/:_id', function(req, res){
             if(!foundObject){
                 res.status(404).send();
             }else {
+                if(foundObject.status == 'Waiting for approval' && req.body.flag == '0'){//this for refuse to deliver/renting
+                    foundObject.status = 'home';
+                    foundObject.userRequest = 'no request';
+                    foundObject.permission = "No";
+                    console.log('not approval');
+                }
+                else if(foundObject.status == 'Waiting for approval' && req.body.flag == '1'){//this for accept to request
+                    if(foundObject.toUse == 'Delivery'){///for deliver
+                        foundObject.status = 'receive';
+                        foundObject.permission = "Yes";
+                        console.log('approval Delivery');
+                    }else{//for renting
+                        foundObject.status = 'rented';
+                        foundObject.permission = "Yes";
+                        console.log('approval renting');
+                    }
+
+                }
+                else{//this for to send to cart page
                     foundObject.userRequest = req.body.userRequest;
                     foundObject.status = 'Waiting for approval';
-
-                    foundObject.save(function(err, updateObject){
-                        if(err){
-                            console.log(err);
-                            res.status(500).send();
-                        }else{
-                            res.send(updateObject);
-                        }
-                    })
                 }
+                foundObject.save(function(err, updateObject){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }else{
+                        res.send(updateObject);
+                    }
+                })
+            }
         }
     });
 });

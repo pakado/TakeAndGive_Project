@@ -1,0 +1,30 @@
+
+<div class="jumbotron text-center" ng-if="!main.loggedIn">
+    <div>
+        <il><a href="#/">Login Or Signcart Please</a></il>
+    </div>
+
+    <div>
+        <p>Login to get started</p>
+        <a href="#/login" class="btn btn-primary">Login</a>
+    </div>
+</div>
+
+<div class="containers"  ng-if="main.loggedIn" style="text-align: center">
+    <div class="container-fluid bg-1 text-center">
+        <div class="text-center">
+            <h2>Permission page</h2><br><br>
+        </div>
+    </div>
+
+    <div class="img" ng-repeat="image in per.images">
+        <div class="images">
+            <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
+            <div class="desc">{{image.category}} - {{image.size}} - {{image.userRequest}} - {{image.toUse}} </div>
+            <div class="mButton">
+                <button value="toUse" ng-click="per.responseTrue(image._id)">Yes</button>
+                <button value="toUse" ng-click="per.responseFalse(image._id)">No</button>
+            </div>
+        </div>
+    </div>
+</div>

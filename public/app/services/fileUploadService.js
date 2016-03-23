@@ -20,18 +20,17 @@ angular.module('fileUploadService',[])
             });
         };
 
-        this.deleteImage = function(_id){
-            return $http.delete('/api/delete/' + _id).success( function(data){
+        this.deleteImage = function(id){
+            return $http.delete('/api/delete/' + id).success( function(data){
                 return data;
             });
         };
 
-        this.updateImage = function(_id, username){
-            return $http.put('/api/updateImage/' + _id, {
+        this.updateImage = function(id, username){
+            return $http.put('/api/updateImage/' + id, {
                 userRequest : username
             }).success(function(data){
                 return data;
             })
-
         }
 });

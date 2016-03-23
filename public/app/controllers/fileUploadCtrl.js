@@ -15,7 +15,7 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
         vm.allImages = {};
         vm.images = {};
 
-        (function () {
+       var refresh =  function () {
 
             Auth.getUser()
                 .then(function (data) {
@@ -32,8 +32,9 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
                         });
                     }
                 });
-        })();
+        };
 
+        refresh();
 
         vm.submit = function () { //function to call on form submit
             vm.error = "";
@@ -76,19 +77,18 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
             }
         };
 
-        vm.updateStatusImage = function (id) {
+        vm.addToCart = function (id) {
             if (confirm("You went to add this photo to your cart?")) {
                 fileUpload.updateImage(id, vm.imageDetails.username).success(function (data) {
                     console.log("The image status as change");
                     if(confirm("The photo move to cart, do you went to go to cart")){
                         $location.path('/cart');
                     }else{
-                        location.reload();
+                        refresh();
                     }
                 });
             } else{
                 console.log("You've canceled to add the photo to your cart");
              }
-
         }
 }]);

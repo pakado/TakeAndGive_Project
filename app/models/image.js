@@ -11,13 +11,14 @@ var ImagesSchema = new Schema({
     country: String,
     city: String,
     category: String,
-    toUse: String,
     size: String,
+    toUse: String,
+    userRequest: String,
+    status: String,
+    permission: String,
     image: { data: Buffer, contentType: String },
     datasrc: String,
-    created: { type: Date, defauly: Date.now},
-    userRequest: String,
-    status: String
+    created: { type: Date, defauly: Date.now}
 
 });
 
