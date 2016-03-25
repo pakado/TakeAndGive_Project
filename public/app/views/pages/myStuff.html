@@ -19,8 +19,13 @@
             <input class="from-control"  type="text" name="category" placeholder="category" ng-model="up.imageDetails.category" hidden>
             <input class="from-control"  type="text" name="size" placeholder="size" ng-model="up.imageDetails.size" hidden>
 
+            <select class="from-control" ng-model="up.imageDetails.toUse">
+                <option value="">---Please select the purpose---</option> <!-- not selected / blank option -->
+                <option value="Renting">Renting</option>
+                <option value="Delivery">Delivery</option>
+            </select><br>
             <select class="from-control" ng-model="up.imageDetails.category" required>
-                <option value="">---Please select Category---</option> <!-- not selected / blank option -->
+                <option value="">---Please select category---</option> <!-- not selected / blank option -->
                 <option value="Accessories">Accessories</option>
                 <option value="Dress" > Dress</option>
                 <option value="Skirt" > Skirt</option>
@@ -36,11 +41,6 @@
                 <option value="Pants Women" >Pants Women</option>
                 <option value="Other" >Other</option>
             </select>
-            <select class="from-control" ng-model="up.imageDetails.toUse">
-                <option value="">---Please select to use---</option> <!-- not selected / blank option -->
-                <option value="Renting">Renting</option>
-                <option value="Delivery">Delivery</option>
-            </select><br>
 
             <select class="from-control" ng-model="up.imageDetails.size">
                 <option value="">---Please select size---</option> <!-- not selected / blank option -->

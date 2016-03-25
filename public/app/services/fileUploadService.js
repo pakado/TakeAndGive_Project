@@ -5,16 +5,14 @@ angular.module('fileUploadService',[])
     .service('fileUpload', function($http){
 
         this.getAllImagesPerUser = function(username){
-            return $http.get('/api/imageperuser/:' + username ,{
-                username: username
-            })
+            return $http.get('/api/imageperuser/' + username ,{})
             .success(function(data){
                     return data;
             });
         };
 
-        this.getAllImages = function(){
-            return $http.get('/api/image', {})
+        this.getAllImages = function(username){
+            return $http.get('/api/image/' + username , {})
             .success(function(data){
                 return data;
             });

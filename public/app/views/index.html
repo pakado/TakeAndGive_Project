@@ -63,8 +63,7 @@
                     </button>
                 </div>
 
-                <div class="collapse navbar-collapse navHeaderCollapase">
-
+                <nav class="collapse navbar-collapse navHeaderCollapase" btn-auto-collapse>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-show="main.loggedIn"><div ng-bind="'Hello '+main.user.username" class="navbar-brand"></div></li>
                         <li ng-show="main.loggedIn"><a><i>&nbsp;</i></a></li>
@@ -77,7 +76,7 @@
                         <li ng-show="!main.loggedIn"><a href="#/signup"><i class="fa fa-user-plus fa-lg" title="SignUp"></i>&nbsp;SignUp</a></li>
                         <li ng-show="main.loggedIn"><a href="#" ng-click="main.doLogout()"><i class="fa fa-sign-in fa-lg" title="Logout"></i>&nbsp;Logout&nbsp;&nbsp;</a></li>
                     </ul>
-                </div>
+                </nav>
             </div>
         </nav>
     </div>
@@ -112,6 +111,7 @@
 <script type="text/javascript" src="app/services/permissionService.js"></script>
 
 <!--Directive-->
+<script type="text/javascript" src="app/directives/autoCollapse.js"></script>
 
 <!--Controllers-->
 <script type="text/javascript" src="app/controllers/mainCtrl.js"></script>

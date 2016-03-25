@@ -148,6 +148,10 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
     var image = new Images();
 
     // adds the fields coming from the request in the image object
+    if(req.body.category == undefined || req.body.toUse == undefined || req.body.size == undefined){
+        console.log("Missing parameter");
+        return;
+    }
     image.username = req.body.username;
     image.category = req.body.category;
     image.toUse = req.body.toUse;
@@ -195,9 +199,12 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
 //get the image
 // http://localhost:3000/images/
 // displays a list of all images
-api.get('/image',function(req, res, next) {
+api.get('/image/:username',function(req, res, next) {
     // get all images
-    Images.find({status : 'home'}, function(err, images) {
+    Images.find({
+        status : 'home',
+        username: {$ne: req.params.username}
+    }, function(err, images) {
         // check for errors
         if(err) {
             // go to the error handler middleware
@@ -219,7 +226,7 @@ api.get('/imageperuser/:username',function(req, res, next) {
     // get an image that its id be equals the value sent by url parameter
 
     Images.find({
-        username: req.params.username.replace(':','')
+        username: req.params.username
     }).exec(function(err, images) {
         // check for errors
         if(err) {
@@ -241,7 +248,7 @@ api.get('/getCartImage/:username',function(req, res, next) {
     // get an image that its id be equals the value sent by url parameter
 
     Images.find({
-        userRequest: req.params.username.replace(':',''),
+        userRequest: req.params.username,
         status: 'Waiting for approval'
     }).exec(function(err, images) {
         // check for errors

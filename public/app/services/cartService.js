@@ -6,7 +6,7 @@ angular.module('cartService', [])
     .service('getCartImage', function($http){
 
         this.all = function(username){
-            return $http.get('/api/getCartImage/:' + username).success( function(data){
+            return $http.get('/api/getCartImage/' + username).success( function(data){
                 return data;
             });
         };
