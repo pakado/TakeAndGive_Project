@@ -226,6 +226,7 @@ api.get('/imageperuser/:username',function(req, res, next) {
     // get an image that its id be equals the value sent by url parameter
 
     Images.find({
+        status : {$ne: 'receive'},
         username: req.params.username
     }).exec(function(err, images) {
         // check for errors
@@ -242,6 +243,26 @@ api.get('/imageperuser/:username',function(req, res, next) {
     });
 });
 
+api.get('/getHistoryImages/:username',function(req, res, next) {
+    // get an image that its id be equals the value sent by url parameter
+
+    Images.find({
+        status : 'receive',
+        username: req.params.username
+    }).exec(function(err, images) {
+        // check for errors
+        if(err) {
+            // adds the http status code to the err object
+            err.status = 422;
+
+            // go to the error handler middleware
+            return next(err);
+        }
+        // if no errors, go to the image page
+        res.json(images);
+        //res.json(images.toString('base64'));
+    });
+});
 
 
 api.get('/getCartImage/:username',function(req, res, next) {
@@ -272,6 +293,30 @@ api.get('/getPermissionImage/:username',function(req, res, next) {
         username: req.params.username,
         status: 'Waiting for approval',
         permission: 'No'
+    }).exec(function(err, images) {
+        // check for errors
+        if(err) {
+            // adds the http status code to the err object
+            err.status = 422;
+
+            // go to the error handler middleware
+            return next(err);
+        }
+        // if no errors, go to the image page
+        res.json(images);
+        //res.json(images.toString('base64'));
+    });
+});
+
+api.get('/getReceiveImages/:userRequest',function(req, res, next) {
+    // get an image that its id be equals the value sent by url parameter
+
+    console.log('approval Delivery');
+    Images.find({
+        status : 'receive',
+        permission : "Yes",
+        userRequest : req.params.userRequest
+
     }).exec(function(err, images) {
         // check for errors
         if(err) {

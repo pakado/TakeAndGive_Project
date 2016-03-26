@@ -1,17 +1,10 @@
 
-<div class="jumbotron text-center" ng-if="!main.loggedIn">
-    <div>
-        <il><a href="#/">Login Or Signcart Please</a></il>
-    </div>
-
-    <div>
-        <p>Login to get started</p>
-        <a href="#/login" class="btn btn-primary">Login</a>
-    </div>
+<div ng-if="!main.loggedIn" class="col-sm-10 col-md-5 col-md-offset-5">
+    <il><a href="#/">Login Or SignUp Please</a></il>
 </div>
 
 <div class="containers"  ng-if="main.loggedIn" style="text-align: center">
-    <h1>Permission page</h1><br>
+    <h1>Permission Page</h1><br>
     <b> Search By </b><br><br>
     Purpose: <input type="text" ng-model="search.toUse"/>
     Who Request: <input type="text" ng-model="search.userRequest"/><br><br>

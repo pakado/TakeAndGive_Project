@@ -51,11 +51,11 @@
 <body ng-controller="MainController as main" style="background: #eee">
 <div class="se-pre-con"></div>
 
-<div style="position: fixed;top: 0px;left: 0px;right: 0px;z-index: 1;">
+    <div style="position: fixed;top: 0px;left: 0px;right: 0px;z-index: 1;"  btn-auto-collapse>
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a href="#/" class="navbar-brand" title="Home Page" btn-auto-collapse><i class="fa fa-home fa-lg" ></i>&nbsp;TAG</span></a>
+                    <a href="#/" class="navbar-brand" title="Home Page"><i class="fa fa-home fa-lg" ></i>&nbsp;TAG</span></a>
                     <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navHeaderCollapase">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -63,13 +63,15 @@
                     </button>
                 </div>
 
-                <nav class="collapse navbar-collapse navHeaderCollapase" btn-auto-collapse>
+                <nav class="collapse navbar-collapse navHeaderCollapase">
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-show="main.loggedIn"><div ng-bind="'Hello '+main.user.username" class="navbar-brand"></div></li>
                         <li ng-show="main.loggedIn"><a><i>&nbsp;</i></a></li>
                         <li ng-show="main.loggedIn"><a href="/chat"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>
                         <li ng-show="main.loggedIn"><a href="#/profile"><i class="fa fa-user fa-lg" title="Profile"></i>&nbsp;Profile</a></li>
                         <li ng-show="main.loggedIn"><a href="#/myStuff"><i class="fa fa-upload fa-lg" title="Upload My Stuff"></i>&nbsp;Upload My Stuff</a></li>
+                        <li ng-show="main.loggedIn"><a href="#/history"><i class="fa fa-history fa-lg" title="History"></i>&nbsp;History</a></li>
+                        <li ng-show="main.loggedIn"><a href="#/receive"><i class="fa fa-recycle fa-lg" title="Receive"></i>&nbsp;Receive</a></li>
                         <li ng-show="main.loggedIn"><a href="#/permission"><i class="fa fa-thumbs-o-up fa-lg" title="Permission"></i>&nbsp;Permission</a></li>
                         <li ng-show="main.loggedIn"><a href="#/cart"><i class="fa fa-cart-arrow-down fa-lg" title="Cart"></i>&nbsp;Cart</a></li>
                         <li ng-show="!main.loggedIn"><a href="#/login"><i class="fa fa-sign-in fa-lg" title="Login"></i>&nbsp;Login</a></li>
@@ -81,9 +83,11 @@
         </nav>
     </div>
 
-    <main class="container" style="padding-top: 110px;" >
-        <div ui-view></div>
-    </main>
+
+    <main class="container" style="padding-top: 110px;" btn-auto-collapse>
+    <div ui-view></div>
+</main>
+
 
 <script type="text/javascript" src="app/js/angular.min.js"></script>
 <script type="text/javascript" src="app/js/toArrayFilter.js"></script>
@@ -109,6 +113,8 @@
 <script type="text/javascript" src="app/services/fileUploadService.js"></script>
 <script type="text/javascript" src="app/services/cartService.js"></script>
 <script type="text/javascript" src="app/services/permissionService.js"></script>
+<script type="text/javascript" src="app/services/receiveService.js"></script>
+<script type="text/javascript" src="app/services/historyService.js"></script>
 
 <!--Directive-->
 <script type="text/javascript" src="app/directives/autoCollapse.js"></script>
@@ -122,6 +128,8 @@
 <script type="text/javascript" src="app/controllers/fileUploadCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/cartCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/permissionCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/receiveCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/historyCtrl.js"></script>
 <script type="text/javascript" src="app/app.routes.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
 

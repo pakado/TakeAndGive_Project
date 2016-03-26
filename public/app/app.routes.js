@@ -42,6 +42,16 @@ angular
                 templateUrl: 'app/views/pages/permission.html',
                 controller: "permissionController as per"
             })
+            .state('receive', {
+                url: '/receive',
+                templateUrl: 'app/views/pages/receive.html',
+                controller: "receiveController as receive"
+            })
+                .state('history', {
+                url: '/history',
+                templateUrl: 'app/views/pages/history.html',
+                controller: "historyController as history"
+            })
             .state('testUp', {
                 url: '/testUp',
                 templateUrl: 'app/views/pages/testUp.html',

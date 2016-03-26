@@ -1,0 +1,22 @@
+
+<div ng-if="!main.loggedIn" class="col-sm-10 col-md-5 col-md-offset-5">
+    <il><a href="#/">Login Or SignUp Please</a></il>
+</div>
+
+
+<div class="containers" style="text-align: center" ng-if="main.loggedIn">
+    <h1>Receive Page</h1><br>
+    <b> Search By </b><br><br>
+    From who : <input type="text" ng-model="search.username"/>
+    Category: <input type="text" ng-model="search.category"/>
+    Size: <input type="text" ng-model="search.size"/><br><br>
+    <div class="img" ng-repeat="image in receive.images | filter: search">
+        <div class="images">
+            <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
+            <div class="desc">{{image.category}} - {{image.size}} - Receive from {{image.username}} </div>
+            <div class="mButton">
+                <!-- <button value="toUse" >Delete</button>ng-click="receive.responseTrue(image._id)"-->
+            </div>
+        </div>
+    </div>
+</div>
