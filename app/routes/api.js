@@ -20,7 +20,7 @@ function createToken(user){
         username: user.username,
         email: user.email
     }, secretKey, {
-        expirtesInMinute: 2
+        expiresInMinutes: 60*60
     });
 
     return token;
@@ -269,7 +269,7 @@ api.get('/getPermissionImage/:username',function(req, res, next) {
     // get an image that its id be equals the value sent by url parameter
 
     Images.find({
-        username: req.params.username.replace(':',''),
+        username: req.params.username,
         status: 'Waiting for approval',
         permission: 'No'
     }).exec(function(err, images) {

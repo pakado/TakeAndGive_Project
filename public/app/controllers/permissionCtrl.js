@@ -8,8 +8,8 @@ angular.module('permissionCtrl', ['permissionService','authService'])
 
         var refresh = function(){
             Auth.getUser().success( function(data){
-                vm.username = data.username;
-                getPermissionImage.all(vm.username).success( function(data){
+                    vm.username = data.username;
+                    getPermissionImage.all(vm.username).success( function(data){
                     vm.images = data;
                 });
             });

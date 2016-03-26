@@ -6,7 +6,7 @@ angular.module('permissionService', [])
     .service('getPermissionImage', function($http){
 
         this.all = function(username){
-            return $http.get('/api/getPermissionImage/:' + username,{}).success( function(data){
+            return $http.get('/api/getPermissionImage/' + username,{}).success( function(data){
                 return data;
             });
         };

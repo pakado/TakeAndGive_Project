@@ -5,7 +5,7 @@
 angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','example','fileUpload','cartCtrl','permissionCtrl','yourAppModule','angular-toArrayFilter'])
     .run(function($window, $location){
         var idleTime = 0;
-
+        console.log("Start in :" + new Date());
         var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
 
         //Zero the idle timer on mouse movement.
@@ -18,14 +18,14 @@ angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','exampl
 
         function timerIncrement(){
             idleTime = idleTime + 1;
-            if (idleTime > 3333) { // 5 minutes
+            if (idleTime > 5) { // 5 minutes
                 var token = $window.localStorage.getItem('token');
                 if(token){
                     $window.localStorage.removeItem('token');
-                    $location.path('/');
                     window.location.reload();
+                    console.log("End in :" + new Date());
+                    console.log("The user logout :" + new Date());
                 }
-
             }
         }
     })

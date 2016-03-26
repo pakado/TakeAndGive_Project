@@ -11,13 +11,12 @@
 </div>
 
 <div class="containers"  ng-if="main.loggedIn" style="text-align: center">
-    <div class="container-fluid bg-1 text-center">
-        <div class="text-center">
-            <h2>Permission page</h2><br><br>
-        </div>
-    </div>
+    <h1>Permission page</h1><br>
+    <b> Search By </b><br><br>
+    Purpose: <input type="text" ng-model="search.toUse"/>
+    Who Request: <input type="text" ng-model="search.userRequest"/><br><br>
 
-    <div class="img" ng-repeat="image in per.images">
+    <div class="img" ng-repeat="image in per.images | filter: search">
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
             <div class="desc">{{image.category}} - {{image.size}} - {{image.userRequest}} - {{image.toUse}} </div>

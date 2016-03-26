@@ -3,7 +3,7 @@
  */
 angular.module('authService', [])
 
-    .service('Auth', function($http, $q, AuthToken){
+    .service('Auth', function($http, $q, $window, AuthToken){
 
         this.login = function(username, password){
 
