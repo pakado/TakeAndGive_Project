@@ -7,10 +7,17 @@ angular.module('cartCtrl', ['cartService','authService'])
         var vm = this;
         vm.userDetails = {};
 
-        Auth.getUser().success( function(data){
-            vm.userDetails = data;
-            getCartImage.all(vm.userDetails.username).success( function(data){
-                vm.userCart = data;
-            });
-        });
+        var refresh =  function () {
+            vm.LoggedIn = Auth.lsLoggedIn();
+            if(vm.LoggedIn){
+                Auth.getUser().success(function (data) {
+                    vm.userDetails = data;
+                    getCartImage.all(vm.userDetails.username).success(function (data) {
+                        vm.userCart = data;
+                    });
+                });
+            }
+        };
+
+        refresh();
     });

@@ -3,19 +3,21 @@
  */
 angular.module('historyCtrl', ['authService', 'historyService'])
 
-    .controller('historyController', function(Auth, historyImages){
+    .controller('historyController', function($rootScope, Auth, historyImages){
 
         var vm = this;
 
-        var refresh = function(){
+        var refresh =  function () {
+            vm.LoggedIn = Auth.lsLoggedIn();
+            if (vm.LoggedIn) {
+                Auth.getUser().success(function (data) {
+                    vm.username = data.username;
 
-            Auth.getUser().success( function(data){
-                vm.username = data.username;
-
-                historyImages.all(vm.username).success( function(data){
-                    vm.images = data;
-                })
-            })
+                    historyImages.all(vm.username).success(function (data) {
+                        vm.images = data;
+                    })
+                });
+            }
         };
 
         refresh();

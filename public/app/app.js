@@ -2,7 +2,7 @@
  * Created by pkdo1 on 11/30/2015.
  */
 
-angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','example','fileUpload','cartCtrl','permissionCtrl','receiveCtrl','historyCtrl','yourAppModule','angular-toArrayFilter'])
+angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','example','fileUpload','cartCtrl','permissionCtrl','receiveCtrl','historyCtrl','rentingCtrl','yourAppModule','angular-toArrayFilter'])
     .run(function($window, $location){
         var idleTime = 0;
         console.log("Start in :" + new Date());
@@ -18,7 +18,7 @@ angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','exampl
 
         function timerIncrement(){
             idleTime = idleTime + 1;
-            if (idleTime > 5) { // 6 minutes
+            if (idleTime > 33333) { // 6 minutes
                 var token = $window.localStorage.getItem('token');
                 if(token){
                     $window.localStorage.removeItem('token');

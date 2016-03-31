@@ -247,7 +247,8 @@ api.get('/getHistoryImages/:username',function(req, res, next) {
     // get an image that its id be equals the value sent by url parameter
 
     Images.find({
-        status : 'receive',
+        //status : 'receive',
+        permission: 'Yes',
         username: req.params.username
     }).exec(function(err, images) {
         // check for errors
@@ -332,6 +333,28 @@ api.get('/getReceiveImages/:userRequest',function(req, res, next) {
     });
 });
 
+api.get('/getRentingImages/:username',function(req, res, next) {
+    // get an image that its id be equals the value sent by url parameter
+    Images.find({
+        status : 'rented',
+        permission : "Yes",
+        userRequest : req.params.username
+
+    }).exec(function(err, images) {
+        // check for errors
+        if(err) {
+            // adds the http status code to the err object
+            err.status = 422;
+
+            // go to the error handler middleware
+            return next(err);
+        }
+        // if no errors, go to the image page
+        res.json(images);
+        //res.json(images.toString('base64'));
+    });
+});
+
 api.put('/updateImage/:_id', function(req, res){
 
     var id = req.params._id;
@@ -352,18 +375,17 @@ api.put('/updateImage/:_id', function(req, res){
                     console.log('not approval');
                 }
                 else if(foundObject.status == 'Waiting for approval' && req.body.flag == '1'){//this for accept to request
-                    if(foundObject.toUse == 'Delivery'){///for deliver
+                    if(foundObject.toUse == 'Delivery'){//for deliver
                         foundObject.status = 'receive';
                         foundObject.permission = "Yes";
                         console.log('approval Delivery');
-                    }else{//for renting
+                    }else{                              //for renting
                         foundObject.status = 'rented';
                         foundObject.permission = "Yes";
                         console.log('approval renting');
                     }
-
                 }
-                else{//this for to send to cart page
+                else{                                   //this for to send to cart page
                     foundObject.userRequest = req.body.userRequest;
                     foundObject.status = 'Waiting for approval';
                 }

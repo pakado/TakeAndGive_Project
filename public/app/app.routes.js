@@ -47,7 +47,12 @@ angular
                 templateUrl: 'app/views/pages/receive.html',
                 controller: "receiveController as receive"
             })
-                .state('history', {
+            .state('renting', {
+                url: '/renting',
+                templateUrl: 'app/views/pages/renting.html',
+                controller: "rentingController as renting"
+            })
+            .state('history', {
                 url: '/history',
                 templateUrl: 'app/views/pages/history.html',
                 controller: "historyController as history"

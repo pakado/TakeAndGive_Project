@@ -7,12 +7,15 @@ angular.module('permissionCtrl', ['permissionService','authService'])
         var vm = this;
 
         var refresh = function(){
-            Auth.getUser().success( function(data){
+            vm.LoggedIn = Auth.lsLoggedIn();
+            if(vm.LoggedIn){
+                Auth.getUser().success( function(data){
                     vm.username = data.username;
                     getPermissionImage.all(vm.username).success( function(data){
-                    vm.images = data;
+                        vm.images = data;
+                    });
                 });
-            });
+            }
         };
 
         refresh();
@@ -34,5 +37,4 @@ angular.module('permissionCtrl', ['permissionService','authService'])
                 });
             }
         }
-
     });
