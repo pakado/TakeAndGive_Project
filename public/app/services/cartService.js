@@ -10,5 +10,11 @@ angular.module('cartService', [])
                 return data;
             });
         };
-
+//time in cart
+      /* this.validateImageTime = function(){
+            return $http.post('/api/validateImageTime/').success( function(data){
+                return data;
+            });
+        }
+*/
     });

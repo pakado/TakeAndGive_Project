@@ -12,6 +12,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "connect-multiparty": "^2.0.0",
+    "date-format-lite": "^0.7.4",
     "express": "^4.10.2",
     "fs": "0.0.2",
     "git": "^0.1.5",

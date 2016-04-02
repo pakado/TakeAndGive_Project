@@ -24,7 +24,7 @@
                 <option value="Renting">Renting</option>
                 <option value="Delivery">Delivery</option>
             </select><br>
-            <select class="from-control" ng-model="up.imageDetails.category" required>
+            <select class="from-control" ng-model="up.imageDetails.category" ng-change="up.isShoes();" required>
                 <option value="">---Please select category---</option> <!-- not selected / blank option -->
                 <option value="Accessories">Accessories</option>
                 <option value="Dress" > Dress</option>
@@ -44,12 +44,22 @@
 
             <select class="from-control" ng-model="up.imageDetails.size">
                 <option value="">---Please select size---</option> <!-- not selected / blank option -->
-                <option value="XS">XS</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
+                <option ng-hide="up.isShoe" value="XS">XS</option>
+                <option ng-hide="up.isShoe" value="S">S</option>
+                <option ng-hide="up.isShoe" value="M">M</option>
+                <option ng-hide="up.isShoe" value="L">L</option>
+                <option ng-hide="up.isShoe" value="XL">XL</option>
+                <option ng-hide="up.isShoe" value="XXL">XXL</option>
+                <option ng-show="up.isShoe" value="36">36</option>
+                <option ng-show="up.isShoe" value="37">37</option>
+                <option ng-show="up.isShoe" value="38">38</option>
+                <option ng-show="up.isShoe" value="39">39</option>
+                <option ng-show="up.isShoe" value="40">40</option>
+                <option ng-show="up.isShoe" value="41">41</option>
+                <option ng-show="up.isShoe" value="42">42</option>
+                <option ng-show="up.isShoe" value="43">43</option>
+                <option ng-show="up.isShoe" value="44">44</option>
+                <option ng-show="up.isShoe" value="45">45</option>
             </select><br><br>
 
             <input type="file" ngf-select ng-model="up.file" name="image"  accept="image/*"  ngf-max-size="3MB"

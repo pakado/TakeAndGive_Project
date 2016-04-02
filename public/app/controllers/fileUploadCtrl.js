@@ -2,7 +2,7 @@
  * Created by pkdo10 on 1/26/2016.
  */
 angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
-    .controller('upController',['Upload','$window','$location','fileUpload','Auth',function(Upload,$window,$location,fileUpload,Auth) {
+    .controller('upController',['$scope','Upload','$window','$location','fileUpload','Auth',function($scope,Upload,$window,$location,fileUpload,Auth) {
 
         var vm = this;
         var user;
@@ -14,8 +14,9 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
         vm.error = "";
         vm.allImages = {};
         vm.images = {};
+        vm.isShoe = false;
 
-       var refresh =  function () {
+        var refresh =  function () {
 
             Auth.getUser()
                 .then(function (data) {
@@ -65,6 +66,16 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
             }
         };
 
+        vm.isShoes = function(){
+            if( vm.imageDetails.category == "Shoes Women" ||  vm.imageDetails.category == "Shoes Men"){
+                vm.isShoe = true;
+                vm.imageDetails.size = "";
+            }
+            else{
+                vm.isShoe = false;
+                vm.imageDetails.size = "";
+            }
+        };
 
         vm.getImagesPerUser = function () {
             fileUpload.getAllImagesPerUser(vm.imageDetails.username).success(function (data) {

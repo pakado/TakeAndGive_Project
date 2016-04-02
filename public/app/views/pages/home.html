@@ -18,12 +18,13 @@
 <b>Search By</b><br><br>
     Category: <input type="text" ng-model="search.category"/>
     Size: <input type="text" ng-model="search.size"/>
-    User name: <input type="text" ng-model="search.username"/><br><br>
+    User name: <input type="text" ng-model="search.username"/>
+    City: <input type="text" ng-model="search.city"/><br><br>
 
-    <div class="img" ng-repeat="image in up.allImages | toArray | filter: search">
+        <div class="img" ng-repeat="image in up.allImages | toArray | filter: search">
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
-            <div class="desc">{{image.category}} - {{image.size}} - {{image.username}}</div>
+            <div class="desc">{{image.category}} - {{image.size}} - {{image.username}} - {{image.city}}</div>
             <div class="mButton"><button value="toUse" ng-click="up.addToCart(image._id)">{{image.toUse}}</button></div>
         </div>
     </div>

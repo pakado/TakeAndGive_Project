@@ -12,8 +12,9 @@
     <div class="img" ng-repeat="image in per.images | filter: search">
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
-            <div class="desc">{{image.category}} - {{image.size}} - {{image.userRequest}} - {{image.toUse}} </div>
-            <div class="mButton">
+            <div class="desc">{{image.category}} - {{image.size}}</div>
+            <div class="mButton">{{image.userRequest}} is waiting for approval({{image.toUse}}) </div>
+            <div class="mButton"></div>
                 <button value="toUse" ng-click="per.responseTrue(image._id)">Yes</button>
                 <button value="toUse" ng-click="per.responseFalse(image._id)">No</button>
             </div>

@@ -23,8 +23,8 @@ angular.module('userCtrl', ['userService'])
         vm.userData.email = "";
         vm.userData.password = "";
         vm.userData.passwordConfirmation= "";
-       /* vm.userData.country = "";
-        vm.userData.city = "";*/
+        vm.userData.country = "Israel";
+        vm.userData.city = "";
         vm.userData.sex = "";
 
         vm.signupUser = function(){
@@ -41,7 +41,8 @@ angular.module('userCtrl', ['userService'])
                         }
                         else{
                             $window.localStorage.setItem('token', response.data.token);
-                            $location.path('/');
+                            $location.path('/home');
+                            window.location.reload();
                         }
                     })
             }
@@ -113,12 +114,21 @@ validate = function(vm, status){
             vm.error = "The password don't mach to the Confrim password";
             return false;
         }
+        else if(vm.userData.country == "" || vm.userData.country == undefined){
+            console.log("Need to choose country");
+            vm.error = "Need to choose country";
+            return false;
+        }
+        else if(vm.userData.city == "" || vm.userData.city == undefined){
+            console.log("Need to choose city");
+            vm.error = "Need to choose city";
+            return false;
+        }
         else if(vm.userData.sex == "" || vm.userData.sex == undefined){
             console.log("Need to choose gender");
             vm.error = "Need to choose gender";
             return false;
         }
-
     }
     if(status == 'changeDetails' ){
         if(vm.userData.oldPassword == "" || vm.userData.oldPassword == undefined){

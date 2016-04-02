@@ -16,6 +16,7 @@ var ImagesSchema = new Schema({
     userRequest: String,
     status: String,
     permission: String,
+    timeRequest: String,
     image: { data: Buffer, contentType: String },
     datasrc: String,
     created: { type: Date, defauly: Date.now}

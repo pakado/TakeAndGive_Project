@@ -14,8 +14,10 @@
         <div class="img" ng-repeat="image in cart.userCart | toArray | filter: search">
             <div>
                 <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">
-                <div class="desc">{{image.category}} - {{image.size}} - {{image.username}}</div>
-                <div class="mButton" style="padding-left: 60px;">{{image.status}}</div>
+                <div class="desc">{{image.category}} - {{image.size}} - {{image.username}} </div>
+                <div>Time request :{{image.timeRequest | date:"MM/dd/yyyy 'at' h:mma"}}</div>
+                <div class="mButton" style="padding-left: 10px;">Status: {{image.status}}</div>
+                <div class="mButton"><button value="Cancel" ng-click="cart.cancel(image._id);">Cancel</button></div>
             </div>
         </div>
     </form>
