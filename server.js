@@ -185,8 +185,18 @@ app.use(function(req, res, next) {
 //app.use(express.static(__dirname + '/public'));
 
 
+var sendgrid  = require('sendgrid')(sendgrid_api_key);
 
 app.get('/', function(req, res){
+    /*sendgrid.send({
+        to:       'pkdo10@walla.com',
+        from:     'pkdo10@walla.com',
+        subject:  'Hello World',
+        text:     'My first email through SendGrid.'
+    }, function(err, json) {
+        if (err) { return console.error(err); }
+        console.log(json);
+    });*/
     res.sendFile(__dirname + '/public/app/views/index.html');
 });
 app.get('/chat', function(req, res){

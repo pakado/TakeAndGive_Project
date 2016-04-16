@@ -45,6 +45,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3910">
+              <caret line="190" column="6" selection-start-line="190" selection-start-column="6" selection-end-line="190" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="chatApp.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app/views/pages/chatApp.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,12 +81,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/public/app/app.js" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/public/app/app.routes.js" />
         <option value="$PROJECT_DIR$/app/models/chat_server.js" />
         <option value="$PROJECT_DIR$/public/app/controllers/chatCtrl.js" />
         <option value="$PROJECT_DIR$/public/app/views/pages/chatApp.html" />
         <option value="$PROJECT_DIR$/public/app/views/index.html" />
+        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/public/app/controllers/chatApp.js" />
       </list>
     </option>
@@ -480,15 +490,15 @@
       <workItem from="1460781257739" duration="17319000" />
       <workItem from="1460802358562" duration="1118000" />
       <workItem from="1460807254789" duration="101000" />
-      <workItem from="1460807573770" duration="3694000" />
+      <workItem from="1460807573770" duration="5635000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22232000" />
+    <option name="totallyTimeSpent" value="24173000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1552" height="840" extended-state="0" />
+    <frame x="-8" y="-8" width="1552" height="840" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -755,8 +765,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2170023" vertical-offset="0" max-vertical-offset="3740">
-          <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3910">
+          <caret line="190" column="6" selection-start-line="190" selection-start-column="6" selection-end-line="190" selection-end-column="6" />
           <folding />
         </state>
       </provider>
