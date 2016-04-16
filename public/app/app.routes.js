@@ -66,11 +66,14 @@ angular
                 url: '/myStuff',
                 templateUrl: 'app/views/pages/myStuff.html',
                 controller: "upController as up"
+<<<<<<< HEAD
             })
             .state('chatApp', {
                 url: '/chatApp',
                 templateUrl: 'app/views/pages/chatApp.html',
                 controller: 'chatController as chat'
+=======
+>>>>>>> 09d563681296f357a04692475eb9c24f67d35084
             });
 
         $urlRouterProvider.otherwise('/');
