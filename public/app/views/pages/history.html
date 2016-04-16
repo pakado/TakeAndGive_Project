@@ -1,0 +1,21 @@
+
+<div ng-if="!main.loggedIn" class="col-sm-10 col-md-5 col-md-offset-5">
+    <il><a href="#/">Login Or SignUp Please</a></il>
+</div>
+
+
+<div class="containers"  ng-if="main.loggedIn" style="text-align: center">
+    <h1>History Page</h1><br>
+    <b> Search By </b><br><br>
+    Purpose: <input type="text" ng-model="search.toUse"/>
+    Who Request: <input type="text" ng-model="search.userRequest"/><br><br>
+
+    <div class="img" ng-repeat="image in history.images | filter: search">
+        <div class="images">
+            <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
+            <div class="desc">{{image.category}} - {{image.size}} - {{image.toUse}} to {{image.userRequest}}  </div>
+            <div class="mButton">
+            </div>
+        </div>
+    </div>
+</div>

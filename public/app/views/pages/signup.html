@@ -1,0 +1,103 @@
+
+<head>
+<title>SignUp</title>
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-lg-4 col-md-offset-4">
+            <h1>Signup!</h1>
+            <from method="post" class="form-sigin">
+                <input type="text" name="name" placeholder="Name" class="form-control" ng-model="user.userData.name" required></br>
+                <input type="text" name="username" placeholder="User Name" class="form-control" ng-model="user.userData.username" required></br>
+                <input type="email" name="email" placeholder="Email" class="form-control" ng-model="user.userData.email" required></br>
+                <input type="password" name="password" placeholder="Password" class="form-control" ng-model="user.userData.password" required></br>
+                <input type="password" name="password" placeholder="Re-enter Password" class="form-control" ng-model="user.userData.passwordConfirmation" required></br>
+                <input type="text" name="country" class="form-control" ng-model="user.userData.country" disabled></br>
+
+                <select name="city" ng-model="user.userData.city">
+                    <option value="">Please select the city</option> <!-- not selected / blank option -->
+                    <option value='Central'>Acre</option>
+                    <option value='Central'>Afula</option>
+                    <option value='Central'>Arad</option>
+                    <option value='Central'>Arielb</option>
+                    <option value='Central'>Ashdod</option>
+                    <option value='Central'>Ashkelon</option>
+                    <option value='Central'>Bat Yam</option>
+                    <option value='Central'>Beershebae</option>
+                    <option value='Central'>Beit She'anf</option>
+                    <option value='Central'>Beit Shemeshg</option>
+                    <option value='Central'>Beitar Illit</option>
+                    <option value='Central'>Bnei Brakh</option>
+                    <option value='Central'>Dimona</option>
+                    <option value='Central'>Eilatj</option>
+                    <option value='Central'>El'ad</option>
+                    <option value='Central'>Giv'at Shmuel</option>
+                    <option value='Central'>Givatayim</option>
+                    <option value='Central'>Hadera</option>
+                    <option value='Central'>Haifa</option>
+                    <option value='Central'>Herzliyak</option>
+                    <option value='Central'>Hod HaSharon</option>
+                    <option value='Central'>Holon</option>
+                    <option value='Central'>Jerusalem</option>
+                    <option value='Central'>Karmiell</option>
+                    <option value='Central'>Kfar Sabao</option>
+                    <option value='Central'>Kfar Yona</option>
+                    <option value='Central'>Kiryat Ata</option>
+                    <option value='Central'>Kiryat Bialikq</option>
+                    <option value='Central'>Kiryat Gatr</option>
+                    <option value='Central'>Kiryat Malakhis</option>
+                    <option value='Central'>Kiryat Motzkint</option>
+                    <option value='Central'>Kiryat Onou</option>
+                    <option value='Central'>Kiryat Shmonav</option>
+                    <option value='Central'>Kiryat Yamw</option>
+                    <option value='Central'>Lod</option>
+                    <option value='Central'>Ma'ale Adumim</option>
+                    <option value='Central'>Ma'alot-Tarshiha</option>
+                    <option value='Central'>Migdal HaEmekx</option>
+                    <option value='Central'>Modi'in Illit</option>
+                    <option value='Central'>Modi'in-Maccabim-Re'ut</option>
+                    <option value='Central'>Nahariyaz</option>
+                    <option value='Central'>Nazareth</option>
+                    <option value='Central'>Nazareth Illitaa</option>
+                    <option value='Central'>Nesher</option>
+                    <option value='Central'>Ness Zionaab</option>
+                    <option value='Central'>Netanya</option>
+                    <option value='Central'>Netivot</option>
+                    <option value='Central'>Ofakimac</option>
+                    <option value='Central'>Or Akivaad</option>
+                    <option value='Central'>Or Yehuda</option>
+                    <option value='Central'>Petah Tikvaae</option>
+                    <option value='Central'>Qalansawe</option>
+                    <option value='Central'>Ra'anana</option>
+                    <option value='Central'>Rahat</option>
+                    <option value='Central'>Ramat Gan</option>
+                    <option value='Central'>Ramat HaSharon</option>
+                    <option value='Central'>Ramla</option>
+                    <option value='Central'>Rehovot</option>
+                    <option value='Central'>Rishon LeZionaf</option>
+                    <option value='Central'>Rosh HaAyin</option>
+                    <option value='Central'>Safedag</option>
+                    <option value='Central'>Sakhnin</option>
+                    <option value='Central'>Sderotah</option>
+                    <option value='Central'>Shefa-'Amr</option>
+                    <option value='Central'>Tamra</option>
+                    <option value='Central'>Tayibe</option>
+                    <option value='Central'>Tel Aviva</option>
+                    <option value='Central'>Tiberias</option>
+                    <option value='Central'>Tira</option>
+                    <option value='Central'>Tirat Carmelak</option>
+                    <option value='Central'>Umm al-Fahm</option>
+                    <option value='Central'>Yavne</option>
+                    <option value='Central'>Yehud</option>
+                    <option value='Central'>Yokneam</option>
+                </select></br></br>
+
+                <input type="radio" name="sex" placeholder="Gender" value="Male" ng-model="user.userData.sex" >Male &nbsp;&nbsp;
+                <input type="radio" name="sex" placeholder="Gender" value="Female" ng-model="user.userData.sex">Female</br></br>
+                <button ng-click="user.signupUser()" class="btn btn-success">SignUp</button></br></br>
+                <strong><spand class="alert-danger" ng-bind="user.error" ></spand></strong></br>
+            </from>
+        </div>
+    </div>
+</div>

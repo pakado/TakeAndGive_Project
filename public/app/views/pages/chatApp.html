@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Private Chat</title>
+    <link rel="icon" type="image/png" href="favicon.ico"/>
+    <link rel="stylesheet" href="app/font-awesome/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href="app/css/style.css" rel="stylesheet">
+</head>
+<body >
+
+<div ng-if="!main.loggedIn" class="col-sm-10 col-md-5 col-md-offset-5">
+    <il><a href="#/">Login Or SignUp Please</a></il>
+</div>
+
+<div  ng-if="main.loggedIn">
+    <h3>Private Chat - <span ng-bind="chat.user.username"></span></h3>
+
+    <!--<div ng-if="!chat.isNameAssigned()">
+        <form ng-submit="chat.signup()" name="signupForm"  class="signup">
+            Name: <input type="text" pattern="[a-zA-Z0-9_-]{4,10}" placeholder="only alpha-numeric [min 4 char]" name="userName" ng-model="chat.userName" required/><br />
+            E-mail: <input type="email" name="userEmail" ng-model="chat.userEmail" required/><br />
+            <button type="submit">Submit</button><br /><br />
+            <span>Hi {{userName}}</span>
+        </form>
+    </div>-->
+
+    <div id='body'>
+        <div id="header">
+            <i class="fa fa-arrow-left"></i>
+            <span>{{chat.patner}}</span>
+            <i class="fa fa-edit"></i>
+        </div>
+
+        <div id='room-list'>
+            <h3>Online Users</h3>
+            <div ng-if="!chat.isNameAssigned()">
+                <h3 ng-class="onlineli">No users</h3>
+            </div>
+            <ul ng-if="chat.isNameAssigned()">
+                <li ng-repeat="user in chat.onlineUsers track by $index | notMe:this" ng-click="chat.patnerSelected(user);" ng-class="onlineli">{{user}}</li>
+            </ul>
+        </div>
+
+        <div id='container'>
+            <ul>
+                <li name="chatbox" ng-repeat="msg in chat.msgs track by $index" setfocus="$last" ng-class="msg.sender === chat.name ? 'right' : 'left'">
+                    <span>{{msg.text}}</span>
+                </li>
+            </ul>
+            <a href="" id="bottom"></a>
+        </div>
+
+        <form class='footer' ng-submit="chat.sendMsg()" action="" name ="textbox">
+            <input id='send-message' type="text" name="msgText" ng-model="chat.msgText"/>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<!--<script src="/socket.io/socket.io.js"></script>
+<script src="/scripts/vendor/angular.js"></script>
+<script src="scripts/chatApp.js"></script>-->
+</body>
+</html>
