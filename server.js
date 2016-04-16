@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var config = require('./config');
 var mongoose = require('mongoose');
-<<<<<<< HEAD
 var http = require("http");
 var chatServer = require("./app/models/chat_server.js");
 
@@ -27,20 +26,11 @@ app.use(express.static(path.join(__dirname, '/public')));
 var server = http.Server(app);
 chatServer.listen(server);
 //var http = require('http').Server(app);
-=======
-var app = express();
-
-var http = require('http').Server(app);
->>>>>>> 09d563681296f357a04692475eb9c24f67d35084
 //var server = require('http').createServer(app);
 
 var io = require('socket.io').listen(http).sockets;
 //var io = require('socket.io').listen(server);
-<<<<<<< HEAD
 /*
-=======
-
->>>>>>> 09d563681296f357a04692475eb9c24f67d35084
 mongoose.connect(config.database, function(err){
     if(err){
         console.log(err)
@@ -178,11 +168,7 @@ mongoose.connect(config.database, function(err){
 
     });
 });
-<<<<<<< HEAD
 */
-=======
-
->>>>>>> 09d563681296f357a04692475eb9c24f67d35084
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
@@ -196,13 +182,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-<<<<<<< HEAD
 //app.use(express.static(__dirname + '/public'));
 
 
-=======
-app.use(express.static(__dirname + '/public'));
->>>>>>> 09d563681296f357a04692475eb9c24f67d35084
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/public/app/views/index.html');
@@ -211,34 +193,22 @@ app.get('/chat', function(req, res){
     res.sendFile(__dirname + '/public/app/views/pages/chat.html');
 });
 
-<<<<<<< HEAD
 
-=======
-/*
->>>>>>> 09d563681296f357a04692475eb9c24f67d35084
 server.listen(config.port, function(err){
     if(err){
         console.log(err);
     }else{
         console.log("Listen on port 3000");
     }
-<<<<<<< HEAD
 });
 /*
-=======
-});*/
->>>>>>> 09d563681296f357a04692475eb9c24f67d35084
 http.listen(config.port, function(err){
     if(err){
         console.log(err);
     }else{
         console.log("Listen on port 3000");
     }
-<<<<<<< HEAD
 });*/
-=======
-});
->>>>>>> 09d563681296f357a04692475eb9c24f67d35084
 
 
 
