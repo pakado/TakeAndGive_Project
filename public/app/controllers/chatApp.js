@@ -2,7 +2,8 @@ angular.module("chat", ['authService'])
 
 	.factory("socket", function(){
 		//var socket = io.connect('http://localhost:3000/');
-		var socket = io.connect('https://morning-fjord-34230.heroku.com/');
+		//var socket = io.connect('https://morning-fjord-34230.heroku.com/');
+	   	  var socket = io.connect('https://morning-fjord-34230.herokuapp.com/');
 		//var socket = io.connect('https://quiet-island-60014.heroku.com/');
 		return socket;
 	})
