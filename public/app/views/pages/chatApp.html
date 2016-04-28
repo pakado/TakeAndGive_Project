@@ -7,8 +7,8 @@
     <title>Private Chat</title>
     <link rel="icon" type="image/png" href="favicon.ico"/>
     <link rel="stylesheet" href="app/font-awesome/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link href="app/css/style.css" rel="stylesheet">
 </head>
 <body >
@@ -57,13 +57,13 @@
 
         <form class='footer' ng-submit="chat.sendMsg()" action="" name ="textbox">
             <input id='send-message' type="text" name="msgText" ng-model="chat.msgText"/>
-            <button type="submit">Send</button>
+            <input type="submit" value="Send"/>
         </form>
+        <!--<div class="alert-danger" ng-bind="chat.error"></div>-->
     </div>
 </div>
-
-<!--<script src="/socket.io/socket.io.js"></script>
-<script src="/scripts/vendor/angular.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<!--<script src="/scripts/vendor/angular.js"></script>
 <script src="scripts/chatApp.js"></script>-->
 </body>
 </html>

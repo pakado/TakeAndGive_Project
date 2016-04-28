@@ -2,7 +2,7 @@
  * Created by pkdo1 on 11/30/2015.
  */
 
-angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','example','fileUpload','cartCtrl','permissionCtrl','receiveCtrl','historyCtrl','rentingCtrl','chatApp','yourAppModule','angular-toArrayFilter'])
+angular.module('MyApp', ['uiRouterApp','mainCtrl','userCtrl','storyCtrl','example','fileUpload','cartCtrl','permissionCtrl','receiveCtrl','historyCtrl','rentingCtrl','chat','yourAppModule','angular-toArrayFilter'])
     .run(function($window, $location){
         var idleTime = 0;
         console.log("Start in :" + new Date());

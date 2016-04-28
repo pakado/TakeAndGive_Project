@@ -183,27 +183,28 @@ function handleClientDisconnection(socket) {
 
 function sendPreviousMessages(socket){
 	socket.on("send previous messages", function(patnerName){
-		var patnerId = sockets[patnerName].id;
+		if(patnerName != null){
+			var patnerId = sockets[patnerName].id;
 
-		if(socket.id > patnerId){
-			var patner1 = nicknames[socket.id];
-			var patner2 = nicknames[patnerId];
-		}else{
-			var patner1 = nicknames[patnerId];
-			var patner2 = nicknames[socket.id];
+			if(socket.id > patnerId){
+				var patner1 = nicknames[socket.id];
+				var patner2 = nicknames[patnerId];
+			}else{
+				var patner1 = nicknames[patnerId];
+				var patner2 = nicknames[socket.id];
+			}
+
+			var from = (patner2 == nicknames[patnerId]) ? 2 : 1;
+			Message.find({patner1: patner1, patner2: patner2})
+				.sort('-timestamp')
+				.select('text patner1 patner2 timestamp from')
+				.limit(15)
+				.sort({"timestamp": 1})
+				.exec(function(err, docs){
+					if(err) throw err;
+					socket.emit("load old message", docs);
+				});
 		}
-
-		var from = (patner2 == nicknames[patnerId]) ? 2 : 1;
-
-		Message.find({patner1: patner1, patner2: patner2})
-			.sort('-timestamp')
-			.select('text patner1 patner2 timestamp from')
-			.limit(15)
-			.sort({"timestamp": 1})
-			.exec(function(err, docs){
-				if(err) throw err;
-				socket.emit("load old message", docs);
-			});
 	});
 }
 
