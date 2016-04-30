@@ -13,6 +13,9 @@ angular.module('userService', ['authService'])
             return $http.get('/api/users');
         };
 
+        this.sendMailWelcome = function(userData){
+            return $http.post('/api/handleSayHello', userData);
+        };
         //Update user into DB
         this.changeDetails = function(user){
 

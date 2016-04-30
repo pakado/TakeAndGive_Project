@@ -33,6 +33,7 @@ angular.module('userCtrl', ['userService'])
 
                 User.create(vm.userData)
                     .then(function(response){
+                        vm.userDataEmail = vm.userData;
                         vm.userData = {};
                         vm.message = response.data.message;
 
@@ -41,6 +42,8 @@ angular.module('userCtrl', ['userService'])
                         }
                         else{
                             $window.localStorage.setItem('token', response.data.token);
+                            User.sendMailWelcome(vm.userDataEmail);
+                            vm.userData = {};
                             $location.path('/home');
                             window.location.reload();
                         }
@@ -131,7 +134,10 @@ validate = function(vm, status){
         }
     }
     if(status == 'changeDetails' ){
-        if(vm.userData.oldPassword == "" || vm.userData.oldPassword == undefined){
+        if(vm.userData.oldPassword == "" || vm.userData.oldPassword == undefined && vm.userData.newPassword == '' || vm.userData.newPassword == undefined && vm.userData.confrimPassword == '' || vm.userData.confrimPassword == undefined){
+            return true;
+        }
+        else if(vm.userData.oldPassword == "" || vm.userData.oldPassword == undefined){
             console.log("No Old Password");
             vm.error = "No Old Password";
             return false;

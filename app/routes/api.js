@@ -4,6 +4,8 @@
 var User = require('../models/user');
 var Story = require('../models/story');
 var Images = require('../models/image');
+
+var nodemailer = require('nodemailer');
 require("date-format-lite");
 
 var config =  require('../../config');
@@ -23,7 +25,7 @@ function createToken(user){
         country: user.country,
         city: user.city
     }, secretKey, {
-        expiresInMinutes: 60*60
+        expiresIn: 60*60
     });
 
     return token;
@@ -59,6 +61,37 @@ api.post('/signup', function(req, res){
     });
 });
 
+api.post('/handleSayHello', handleSayHello); // handle the route at yourdomain.com/sayHello
+    function handleSayHello(req, res) {
+        // Not the movie transporter!
+        var transporter = nodemailer.createTransport({
+            service: config.service,
+            auth: {
+                user: config.user,
+                pass: config.pass
+            }
+        });
+        var text = 'Hello ' + req.body.name + '\n\nWelcome to Take And Give \n\nYou success to sign up to the Take And Give' +
+            '\n\n Get start https://morning-fjord-34230.herokuapp.com';
+
+        var mailOptions = {
+            from: config.user, // sender address
+            to: req.body.email, // list of receivers
+            subject: 'Take And Give', // Subject line
+            text: text //, // plaintext body
+            // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+                res.json({yo: 'error'});
+            }else{
+                console.log('Message sent: ' + info.response);
+                res.json({yo: info.response});
+            }
+        });
+}
 api.get('/users',function(req, res){
     User.find({}, function(err, users){
         if(err){
@@ -106,7 +139,7 @@ api.put('/update:_id', function(req, res){
     var user = req.body.user;
     User.findOne({
         _id: user.id
-    }).select('name username password').exec(function(err, foundObject){
+    }).select('name username password city').exec(function(err, foundObject){
         if(err){
             console.log(err);
             res.status(500).send();
@@ -114,14 +147,21 @@ api.put('/update:_id', function(req, res){
             if(!foundObject){
                 res.status(404).send();
             }else {
-                var validPassword = foundObject.comparePassword(req.body.user.oldPassword);
-                if(!validPassword){
+                var IsTrue = false;
+                if(req.body.user.newPassword != undefined && req.body.user.newPassword != ""){
+                    var validPassword = foundObject.comparePassword(req.body.user.oldPassword);
+                    IsTrue = true;
+                }
+                if(!validPassword && IsTrue){
                     res.send({message: "Invalid Password"});
                 }else{
                     //foundObject.username = req.body.user.username;
+                    if(req.body.user.newPassword != undefined && req.body.user.newPassword != "")
+                        foundObject.password = req.body.user.newPassword;
+
                     foundObject.name = req.body.user.name;
                     foundObject.email = req.body.user.email;
-                    foundObject.password = req.body.user.newPassword;
+                    foundObject.city = req.body.user.city;
 
                     foundObject.save(function(err, updateObject){
                         if(err){
@@ -523,7 +563,7 @@ api.get('/me', function(req, res){
     res.json(req.decoded);
 });
 
-
 return api;
 
 };
+

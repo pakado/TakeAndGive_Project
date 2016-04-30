@@ -1,4 +1,5 @@
 var socketio = require("socket.io");
+var config =  require('../../config');
 
 var io;
 var nicknames = {};
@@ -23,7 +24,7 @@ var SignupSchema = new mongoose.Schema({
 var Message = mongoose.model("Message", MessageSchema);
 var Signup = mongoose.model("signup", SignupSchema);
 
-mongoose.connect("mongodb://root:moshe098765@ds059654.mongolab.com:59654/takeandgive", function(err) {
+mongoose.connect(config.database, function(err) {
 	if (err) {
 		console.log(err)
 	} else {
