@@ -17,6 +17,10 @@ angular.module('authService', [])
             })
         };
 
+        this.setTokenAuth = function(token){
+            AuthToken.setToken(token);
+            return token;
+        };
         this.logout = function(){
             AuthToken.setToken();
         };

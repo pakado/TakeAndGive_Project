@@ -22,10 +22,10 @@ angular.module('userService', ['authService'])
             return $http.put('/api/update:'+user.id, {
                 user : user
             })
-                .success(function(data){
-                    AuthToken.setToken(data.token);
-                    return data;
-                })
+            .success(function(data){
+                AuthToken.setToken(data.token);
+                return data;
+            })
         };
 
 });

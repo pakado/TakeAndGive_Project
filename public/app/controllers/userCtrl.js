@@ -134,7 +134,9 @@ validate = function(vm, status){
         }
     }
     if(status == 'changeDetails' ){
-        if(vm.userData.oldPassword == "" || vm.userData.oldPassword == undefined && vm.userData.newPassword == '' || vm.userData.newPassword == undefined && vm.userData.confrimPassword == '' || vm.userData.confrimPassword == undefined){
+        if(vm.userData.oldPassword == "" || vm.userData.oldPassword == undefined){
+            console.log("No Old Password");
+            vm.error = "No Old Password";
             return true;
         }
         else if(vm.userData.oldPassword == "" || vm.userData.oldPassword == undefined){

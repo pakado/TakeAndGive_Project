@@ -14,6 +14,16 @@ var secretKey = config.secretKey;
 var jsonwebtoken = require('jsonwebtoken');
 var multer = require('multer');
 var fs = require('fs');
+//var URL = 'https://morning-fjord-34230.herokuapp.com';
+var URL = 'http://localhost:3000';
+
+var transporter = nodemailer.createTransport({
+    service: config.service,
+    auth: {
+        user: config.user,
+        pass: config.pass
+    }
+});
 
 function createToken(user){
 
@@ -63,16 +73,8 @@ api.post('/signup', function(req, res){
 
 api.post('/handleSayHello', handleSayHello); // handle the route at yourdomain.com/sayHello
     function handleSayHello(req, res) {
-        // Not the movie transporter!
-        var transporter = nodemailer.createTransport({
-            service: config.service,
-            auth: {
-                user: config.user,
-                pass: config.pass
-            }
-        });
         var text = 'Hello ' + req.body.name + '\n\nWelcome to Take And Give \n\nYou success to sign up to the Take And Give' +
-            '\n\n Get start https://morning-fjord-34230.herokuapp.com';
+            '\n\n Get start '+URL;
 
         var mailOptions = {
             from: config.user, // sender address
@@ -92,6 +94,85 @@ api.post('/handleSayHello', handleSayHello); // handle the route at yourdomain.c
             }
         });
 }
+
+
+api.post('/email',function(req, res){
+  User.findOne({
+      email: req.body.email
+  }).select('name username password country city email sex').exec(function (err, user) {
+      if (err) {
+          console.log(err);
+          throw  err;
+      }
+      if (!user) {
+          res.send({message: "User do not exit"})
+      } else if (user) {
+              var token = createToken(user);
+              res.json({
+                  success: true,
+                  message: "Successfully login",
+                  token: token
+              });
+      }
+  });
+});
+
+api.post('/sendPassword', function(req, res){
+    var text = 'Hello ' + req.body.name + '\n\nRest password\n\n ' +URL+ '/#/passwordReset/'+req.body.token;
+
+    var mailOptions = {
+        from: config.user, // sender address
+        to: req.body.email, // list of receivers
+        subject: 'Take And Give', // Subject line
+        text: text //, // plaintext body
+        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+            res.json({yo: 'error'});
+        }else{
+            console.log('Message sent: ' + info.response);
+            res.json({yo: info.response});
+        }
+    });
+
+});
+
+api.put('/passwordRest:_id', function(req, res){
+
+    var user = req.body.user;
+    User.findOne({
+        _id: user.id
+    }).select('name username password city').exec(function(err, foundObject){
+        if(err){
+            console.log(err);
+            res.status(500).send();
+        }else{
+            if(!foundObject){
+                res.status(404).send();
+            }else {
+
+                foundObject.password = req.body.user.newPassword;
+                foundObject.save(function(err, updateObject){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }else{
+                        var token = createToken(updateObject);
+                        res.json({
+                            success: true,
+                            message: "user has been change",
+                            token: token
+                        });
+                    }
+                })
+            }
+        }
+    });
+});
+
 api.get('/users',function(req, res){
     User.find({}, function(err, users){
         if(err){
@@ -132,7 +213,6 @@ api.post('/login', function(req, res) {
         }
     });
 });
-
 
 api.put('/update:_id', function(req, res){
 
@@ -308,7 +388,7 @@ api.get('/getHistoryImages/:username',function(req, res, next) {
     });
 });
 
-/*        tine in the cart
+/*        time in the cart
 api.get('/validateImageTime/',function(req, res, next) {
     // get an image that its id be equals the value sent by url parameter
     Images.find({

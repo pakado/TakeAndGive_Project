@@ -2,7 +2,7 @@
  * Created by pkdo10 on 3/25/2016.
  */
 angular
-    .module('yourAppModule',[])
+    .module('directiveCollapseApp',[])
     .directive('btnAutoCollapse', directive);
 
     function directive() {

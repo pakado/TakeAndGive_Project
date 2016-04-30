@@ -71,6 +71,16 @@ angular
                 url: '/chatApp',
                 templateUrl: 'app/views/pages/chatApp.html',
                 controller: 'chatController as chat'
+            })
+            .state('forgetPassword', {
+                url: '/forgetPassword',
+                templateUrl: 'app/views/pages/forgetPassword.html'
+                , controller: 'emailController as email'
+            })
+            .state('passwordReset', {
+                url: '/passwordReset/:token',
+                templateUrl: 'app/views/pages/passwordReset.html'
+                , controller: 'passwordResetController as passwordReset'
             });
 
         $urlRouterProvider.otherwise('/');
