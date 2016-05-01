@@ -7,9 +7,10 @@
 <div class="containers"  ng-if="main.loggedIn" style="text-align: center">
     <h1>History Page</h1><br>
     <b> Search By </b><br><br>
-    Purpose: <input type="text" ng-model="search.toUse"/>
-    Who Request: <input type="text" ng-model="search.userRequest"/><br><br>
-
+    <div class="row">
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.toUse" placeholder="Purpose"/>
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.userRequest" placeholder="Who Request"/><br><br>
+    </div></br>
     <div class="img" ng-repeat="image in history.images | filter: search">
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">

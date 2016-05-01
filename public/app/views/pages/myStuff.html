@@ -69,8 +69,10 @@
         </form>
     </div>
     <b> Search By </b><br><br>
-        Category: <input type="text" ng-model="search.category"/>
-        Size: <input type="text" ng-model="search.size"/><br><br>
+    <div class="row">
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.category" placeholder="Category"/>
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.size" placeholder="Size"/><br><br>
+    </div></br>
     <div class="img" ng-repeat="image in up.images | toArray | filter: search">
         <div>
             <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">

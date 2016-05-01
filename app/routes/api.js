@@ -118,7 +118,7 @@ api.post('/email',function(req, res){
 });
 
 api.post('/sendPassword', function(req, res){
-    var text = 'Hello ' + req.body.name + '\n\nRest password\n\n ' +URL+ '/#/passwordReset/'+req.body.token;
+    var text = 'Hello ' + req.body.name + '\n\nRest password\n\n' +URL+ '/#/passwordReset/'+req.body.token;
 
     var mailOptions = {
         from: config.user, // sender address
