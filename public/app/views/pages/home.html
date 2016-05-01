@@ -16,12 +16,13 @@
         </div>
     </div>
 <b>Search By</b><br><br>
-    Category: <input type="text" ng-model="search.category"/>
-    Size: <input type="text" ng-model="search.size"/>
-    User name: <input type="text" ng-model="search.username"/>
-    City: <input type="text" ng-model="search.city"/><br><br>
-
-        <div class="img" ng-repeat="image in up.allImages | toArray | filter: search">
+    <div class="row">
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.username" placeholder="From who"/>
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.category" placeholder="Category"/>
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.size" placeholder="Size"/>
+        <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.city" placeholder="City"/>
+    </div></br>
+    <div class="img" ng-repeat="image in up.allImages | toArray | filter: search">
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
             <div class="desc">{{image.category}} - {{image.size}} - {{image.username}} - {{image.city}}</div>

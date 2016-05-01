@@ -10,7 +10,7 @@
         <div class="row">
             <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.username" placeholder="From who"/>
             <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.category" placeholder="Category"/>
-            <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.size" placeholder="Size"/><br><br>
+            <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.size" placeholder="Size"/>
         </div></br>
         <div class="img" ng-repeat="image in cart.userCart | toArray | filter: search">
             <div>
