@@ -87,15 +87,15 @@ api.post('/handleSayHello', handleSayHello); // handle the route at yourdomain.c
         transporter.sendMail(mailOptions, function(error, info){
             if(error){
                 console.log(error);
-                res.json({yo: 'error'});
-            }else{
-                console.log('Message sent: ' + info.response);
                 res.json({
                     success: false,
                     message: "Fail to send",
                     error: error,
                     info: info
                 });
+            }else{
+                console.log('Message sent: ' + info.response);
+                res.json({yo: info.response});
             }
         });
 }
@@ -136,15 +136,15 @@ api.post('/sendPassword', function(req, res){
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
             console.log(error);
-            res.json({yo: 'error'});
-        }else{
-            console.log('Message sent: ' + info.response);
             res.json({
                 success: false,
                 message: "Fail to send",
                 error: error,
                 info: info
             });
+        }else{
+            console.log('Message sent: ' + info.response);
+            res.json({yo: info.response});
         }
     });
 
