@@ -43,7 +43,7 @@ angular.module('userCtrl', ['userService'])
                         else{
                             $window.localStorage.setItem('token', response.data.token);
                             User.sendMailWelcome(vm.userDataEmail).then(function(data){
-                                if(data.data.yo == "250 2.0.0 OK 1462099914 d12sm7386685qhd.13 - gsmtp"){
+                                if(data.data.success){
                                     vm.userData = {};
                                     $location.path('/home');
                                     window.location.reload();

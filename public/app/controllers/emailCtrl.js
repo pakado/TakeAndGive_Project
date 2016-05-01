@@ -17,7 +17,7 @@ angular.module('emailCtrl', ['emailService','authService'])
                         vm.user = data.data;
                         vm.user.token = vm.token;
                         sendEmail.sendPassword(vm.user).then(function(data){
-                            if(data.data.yo == "250 2.0.0 OK 1462099914 d12sm7386685qhd.13 - gsmtp"){
+                            if(data.data.success){
                                 Auth.logout();
                                 vm.success = "Success to rest password check your email";
                             }else{

@@ -95,7 +95,7 @@ api.post('/handleSayHello', handleSayHello); // handle the route at yourdomain.c
                 });
             }else{
                 console.log('Message sent: ' + info.response);
-                res.json({yo: info.response});
+                res.json({success: true,yo: info.response});
             }
         });
 }
@@ -144,7 +144,7 @@ api.post('/sendPassword', function(req, res){
             });
         }else{
             console.log('Message sent: ' + info.response);
-            res.json({yo: info.response});
+            res.json({success: true,yo: info.response});
         }
     });
 
