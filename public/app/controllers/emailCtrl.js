@@ -4,12 +4,10 @@
 angular.module('emailCtrl', ['emailService','authService'])
 
     .controller('emailController',function(sendEmail, Auth , AuthToken){
+
        var vm = this;
-
         vm.email = '';
-        vm.flag = false;
         vm.sendPasswordToEmail = function(){
-
             sendEmail.verifyEmail(vm.email).success(function(data){
                 AuthToken.setToken(data.token);
                 vm.token = data.token;
@@ -21,22 +19,15 @@ angular.module('emailCtrl', ['emailService','authService'])
                         sendEmail.sendPassword(vm.user).success(function(data){
                             Auth.logout();
                             vm.success = "Success to rest password check your email";
-                            vm.error = "";
-                            vm.flag = true;
-                            return
+                        }).error(function(){
+                            vm.error = "Not success to send, The email not exist";
                         });
                     });
 
-                if(!vm.flag){
                     if( vm.email == false){
                         vm.error = "Please insert email";
                         vm.email = "";
                     }
-                    else{
-                        vm.error = "Not success to send, The email not exist";
-                        vm.success = "";
-                    }
-                }
             });
         }
     });

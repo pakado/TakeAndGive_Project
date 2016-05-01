@@ -22,13 +22,14 @@ angular.module('passwordResetCtrl',['authService','passwordResetService'])
         vm.passwordReset = function(){
             if(vm.validate()){
                 passwordReset.passwordReset(vm.user)
-                    .then(function(data){
+                    .success(function(data){
                     vm.success = "Success to change password";
-                    vm.error = "";
                     vm.user.newPassword = "";
                     vm.user.confrimPassword = "";
                     vm.flag = true;
                     Auth.logout();
+                }).error(function(data){
+                    vm.error = data;
                 })
             }
         };

@@ -90,7 +90,12 @@ api.post('/handleSayHello', handleSayHello); // handle the route at yourdomain.c
                 res.json({yo: 'error'});
             }else{
                 console.log('Message sent: ' + info.response);
-                res.json({yo: info.response});
+                res.json({
+                    success: false,
+                    message: "Fail to send",
+                    error: error,
+                    info: info
+                });
             }
         });
 }
@@ -134,7 +139,12 @@ api.post('/sendPassword', function(req, res){
             res.json({yo: 'error'});
         }else{
             console.log('Message sent: ' + info.response);
-            res.json({yo: info.response});
+            res.json({
+                success: false,
+                message: "Fail to send",
+                error: error,
+                info: info
+            });
         }
     });
 
