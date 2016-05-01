@@ -26,10 +26,10 @@ angular.module('passwordResetCtrl',['authService','passwordResetService'])
                     vm.success = "Success to change password";
                     vm.user.newPassword = "";
                     vm.user.confrimPassword = "";
-                    vm.flag = true;
                     Auth.logout();
+                    vm.flag = true;
                 }).error(function(data){
-                    vm.error = data;
+                    vm.error = "Not success to send";
                 })
             }
         };
