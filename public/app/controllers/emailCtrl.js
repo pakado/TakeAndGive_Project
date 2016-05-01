@@ -15,13 +15,14 @@ angular.module('emailCtrl', ['emailService','authService'])
                 Auth.getUser()
                     .then(function (data) {
                         vm.user = data.data;
-                        vm.user.token = vm.token
+                        vm.user.token = vm.token;
                         sendEmail.sendPassword(vm.user).then(function(data){
-                            if(data.status == 200){
+                            if(data.data.success){
                                 Auth.logout();
                                 vm.success = "Success to rest password check your email";
                             }else{
                                 vm.error = "Not success to send, The email not exist";
+                                console.log(data.data.error.response);
                             }
                         });
 

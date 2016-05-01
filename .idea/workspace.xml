@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="emailCtrl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="emailCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/app/controllers/emailCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-              <caret line="23" column="63" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.4527163" vertical-offset="30" max-vertical-offset="680">
+              <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
               </folding>
@@ -81,10 +81,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="passwordResetCtrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="passwordResetCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app/controllers/passwordResetCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69509596" vertical-offset="167" max-vertical-offset="1071">
+            <state vertical-scroll-proportion="-11.642858" vertical-offset="167" max-vertical-offset="1071">
               <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
@@ -148,8 +148,8 @@
         <option value="$PROJECT_DIR$/public/app/services/emailService.js" />
         <option value="$PROJECT_DIR$/app/routes/api.js" />
         <option value="$PROJECT_DIR$/public/app/views/pages/passwordReset.html" />
-        <option value="$PROJECT_DIR$/public/app/controllers/emailCtrl.js" />
         <option value="$PROJECT_DIR$/public/app/controllers/passwordResetCtrl.js" />
+        <option value="$PROJECT_DIR$/public/app/controllers/emailCtrl.js" />
       </list>
     </option>
   </component>
@@ -661,12 +661,12 @@
       <workItem from="1461519822004" duration="3164000" />
       <workItem from="1461769413674" duration="1630000" />
       <workItem from="1461829024793" duration="47691000" />
-      <workItem from="1462090090802" duration="8496000" />
+      <workItem from="1462090090802" duration="8981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96674000" />
+    <option name="totallyTimeSpent" value="97159000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="840" extended-state="6" />
@@ -1092,20 +1092,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/controllers/emailCtrl.js">
+    <entry file="file://$PROJECT_DIR$/public/app/controllers/passwordResetCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <caret line="23" column="63" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="63" />
+        <state vertical-scroll-proportion="-11.642858" vertical-offset="167" max-vertical-offset="1071">
+          <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/controllers/passwordResetCtrl.js">
+    <entry file="file://$PROJECT_DIR$/public/app/controllers/emailCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69509596" vertical-offset="167" max-vertical-offset="1071">
-          <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.4527163" vertical-offset="30" max-vertical-offset="680">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
           </folding>
