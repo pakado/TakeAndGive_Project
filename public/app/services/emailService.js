@@ -14,6 +14,8 @@ angular.module('emailService', [])
             })
         };
         this.sendPassword = function(userData){
-            return $http.post('api/sendPassword',userData);
+            return $http.post('api/sendPassword',userData).success(function(data){
+                return data;
+            });
         }
     });
