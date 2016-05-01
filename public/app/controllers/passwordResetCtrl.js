@@ -10,6 +10,7 @@ angular.module('passwordResetCtrl',['authService','passwordResetService'])
         vm.user = {};
         vm.user.newPassword = "";
         vm.user.confrimPassword = "";
+        vm.flag = false;
         var token = hash.replace("#/passwordReset/",'');
         Auth.setTokenAuth(token);
 
@@ -24,6 +25,9 @@ angular.module('passwordResetCtrl',['authService','passwordResetService'])
                     .then(function(data){
                     vm.success = "Success to change password";
                     vm.error = "";
+                    vm.user.newPassword = "";
+                    vm.user.confrimPassword = "";
+                    vm.flag = true;
                     Auth.logout();
                 })
             }

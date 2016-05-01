@@ -7,7 +7,7 @@ angular.module('emailCtrl', ['emailService','authService'])
        var vm = this;
 
         vm.email = '';
-
+        vm.flag = false;
         vm.sendPasswordToEmail = function(){
 
             sendEmail.verifyEmail(vm.email).success(function(data){
@@ -22,12 +22,21 @@ angular.module('emailCtrl', ['emailService','authService'])
                             Auth.logout();
                             vm.success = "Success to rest password check your email";
                             vm.error = "";
+                            vm.flag = true;
                             return
                         });
+                    });
+
+                if(!vm.flag){
+                    if( vm.email == false){
+                        vm.error = "Please insert email";
+                        vm.email = "";
+                    }
+                    else{
                         vm.error = "Not success to send, The email not exist";
                         vm.success = "";
-                        return;
-                    });
+                    }
+                }
             });
         }
     });
