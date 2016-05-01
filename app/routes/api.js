@@ -14,8 +14,8 @@ var secretKey = config.secretKey;
 var jsonwebtoken = require('jsonwebtoken');
 var multer = require('multer');
 var fs = require('fs');
-//var URL = 'https://morning-fjord-34230.herokuapp.com';
-var URL = 'http://localhost:3000';
+var URL = 'https://morning-fjord-34230.herokuapp.com';
+//var URL = 'http://localhost:3000';
 
 var transporter = nodemailer.createTransport({
     service: config.service,
