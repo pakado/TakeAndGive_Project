@@ -33,7 +33,8 @@ function createToken(user){
         username: user.username,
         email: user.email,
         country: user.country,
-        city: user.city
+        city: user.city,
+        connectTime: new Date()
     }, secretKey, {
         expiresIn: 60*60
     });
@@ -281,36 +282,25 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
     var image = new Images();
 
     // adds the fields coming from the request in the image object
-    if(req.body.category == undefined || req.body.toUse == undefined || req.body.size == undefined){
+    if(req.body.category == undefined || req.body.toUse == undefined || req.body.size == undefined || req.file.size > 2000000){
         console.log("Missing parameter");
-        return;
-    }
-    image.username = req.body.username;
-    image.category = req.body.category;
-    image.toUse = req.body.toUse;
-    image.size = req.body.size;
-    image.status = 'home';
-    image.userRequest = 'no request';
-    image.permission = "No";
-    image.city = req.body.city;
-    image.country = req.body.country;
-    image.datasrc = fs.readFileSync(req.file.path).toString('base64');
-    //image.image.data = fs.readFileSync(req.file.path).toString('base64');
-    image.image.contentType = req.file.mimetype;
+        res.redirect('/#/myStuffError');
+    }else{
+        image.username = req.body.username;
+        image.category = req.body.category;
+        image.toUse = req.body.toUse;
+        image.size = req.body.size;
+        image.status = 'home';
+        image.userRequest = 'no request';
+        image.permission = "No";
+        image.city = req.body.city;
+        image.country = req.body.country;
+        image.datasrc = fs.readFileSync(req.file.path).toString('base64');
+        //image.image.data = fs.readFileSync(req.file.path).toString('base64');
+        image.image.contentType = req.file.mimetype;
 
-    // save image
-    image.save(function(err) {
-        // check for errors
-        if(err) {
-            // go to the error handler middleware
-            return next(err);
-        }
-
-        // if no errors, log this message in the console
-        console.log('image saved in mongodb!');
-
-        // delete image from uploads directory
-        fs.unlink(req.file.path, function(err) {
+        // save image
+        image.save(function(err) {
             // check for errors
             if(err) {
                 // go to the error handler middleware
@@ -318,13 +308,26 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
             }
 
             // if no errors, log this message in the console
-            console.log('image deleted from server!');
+            console.log('image saved in mongodb!');
 
-            console.log("Save the image!!!");
-            res.req.baseUrl = '';
-            res.redirect('/#/myStuff');
+            // delete image from uploads directory
+            fs.unlink(req.file.path, function(err) {
+                // check for errors
+                if(err) {
+                    // go to the error handler middleware
+                    return next(err);
+                }
+
+                // if no errors, log this message in the console
+                console.log('image deleted from server!');
+
+                console.log("Save the image!!!");
+                res.req.baseUrl = '';
+                res.redirect('/#/myStuff');
+            });
         });
-    });
+    }
+
 });
 
 //finish upload

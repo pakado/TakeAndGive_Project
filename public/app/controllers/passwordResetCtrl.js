@@ -32,6 +32,7 @@ angular.module('passwordResetCtrl',['authService','passwordResetService'])
                     Auth.logout();
                     vm.flag = true;
                 }).error(function(data){
+                    Auth.logout();
                     vm.error = "Not success to send email";
                     vm.success = "";
                 })

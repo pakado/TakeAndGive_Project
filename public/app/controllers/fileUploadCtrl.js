@@ -15,6 +15,11 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
         vm.allImages = {};
         vm.images = {};
         vm.isShoe = false;
+        vm.error = location.hash;
+        if(vm.error == "#/myStuffError"){
+            vm.error = "the image it too big the size need to be less then 2 mb";
+        }else
+            vm.error = "";
 
         var refresh =  function () {
 
@@ -60,7 +65,13 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
 
             else if (/*vm.upload_form.file.$valid && */vm.file) { //check if from is valid
                 //vm.upload(vm.file); //call upload function
+                vm.error = "";
             }
+            else if(vm.file == undefined){
+                vm.error = "the image it too big the size need to be less then 2 mb";
+                return;
+            }
+
             else {
                 vm.error = "Need to choose image to upload";
             }

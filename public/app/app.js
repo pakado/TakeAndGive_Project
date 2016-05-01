@@ -25,7 +25,7 @@ angular.module('MyApp', ['uiRouterApp'
 
         function timerIncrement(){
             idleTime = idleTime + 1;
-            if (idleTime > 15) { // 6 minutes
+            if (idleTime > 2) { // 5 minutes
                 var token = $window.localStorage.getItem('token');
                 if(token){
                     $window.localStorage.removeItem('token');

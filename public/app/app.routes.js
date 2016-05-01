@@ -67,6 +67,11 @@ angular
                 templateUrl: 'app/views/pages/myStuff.html',
                 controller: "upController as up"
             })
+            .state('myStuffError', {
+                url: '/myStuffError',
+                templateUrl: 'app/views/pages/myStuff.html',
+                controller: "upController as up"
+            })
             .state('chatApp', {
                 url: '/chatApp',
                 templateUrl: 'app/views/pages/chatApp.html',

@@ -66,7 +66,7 @@
                 <nav class="collapse navbar-collapse navHeaderCollapase">
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-show="main.loggedIn"><div ng-bind="'Hello '+main.user.username" class="navbar-brand"></div></li>
-                        <li ng-show="main.loggedIn"><a><i>&nbsp;</i></a></li>
+                        <li ng-show="main.loggedIn"><a><i>{{main.user.connectTime | date:"MM/dd/yyyy 'at' h:mma"}}</i></a></li>
                         <!--<li ng-show="main.loggedIn"><a href="/chat"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>-->
                         <li ng-show="main.loggedIn"><a href="#/chatApp"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>
                         <li ng-show="main.loggedIn"><a href="#/profile"><i class="fa fa-user fa-lg" title="Profile"></i>&nbsp;Profile</a></li>

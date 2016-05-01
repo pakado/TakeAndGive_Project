@@ -9,7 +9,6 @@ angular.module('mainCtrl', ['authService'])
     vm.loginData = {};
     vm.loginData.username = "";
     vm.loginData.password = "";
-
     vm.loggedIn = Auth.lsLoggedIn();
 
     $rootScope.$on('$stateChangeStart', function () {
@@ -19,7 +18,9 @@ angular.module('mainCtrl', ['authService'])
                 .then(function (data) {
                     vm.user = data.data;
                 });
+
         }
+
     });
 
 
