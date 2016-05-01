@@ -48,7 +48,10 @@ angular.module('userCtrl', ['userService'])
                                     $location.path('/home');
                                     window.location.reload();
                                 }else{
-                                    vm.error = "Not success to send email";
+                                    alert("Not success to send email");
+                                    vm.userData = {};
+                                    $location.path('/home');
+                                    window.location.reload();
                                 }
                             });
 

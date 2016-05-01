@@ -20,16 +20,20 @@ angular.module('passwordResetCtrl',['authService','passwordResetService'])
             });
 
         vm.passwordReset = function(){
+            vm.success = "";
+            vm.error = "";
             if(vm.validate()){
                 passwordReset.passwordReset(vm.user)
                     .success(function(data){
                     vm.success = "Success to change password";
+                    vm.error = "";
                     vm.user.newPassword = "";
                     vm.user.confrimPassword = "";
                     Auth.logout();
                     vm.flag = true;
                 }).error(function(data){
-                    vm.error = "Not success to send";
+                    vm.error = "Not success to send email";
+                    vm.success = "";
                 })
             }
         };
