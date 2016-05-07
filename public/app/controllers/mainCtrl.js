@@ -3,7 +3,7 @@
  */
 angular.module('mainCtrl', ['authService'])
 
-.controller('MainController', function($rootScope, $location, Auth){
+.controller('MainController', function($rootScope, $location, Auth, AuthInterceptor){
 
     var vm = this;
     vm.loginData = {};
@@ -12,13 +12,12 @@ angular.module('mainCtrl', ['authService'])
     vm.loggedIn = Auth.lsLoggedIn();
 
     $rootScope.$on('$stateChangeStart', function () {
-        vm.LoggedIn = Auth.lsLoggedIn();
-        if(vm.LoggedIn){
+
+        if(vm.loggedIn){
             Auth.getUser()
                 .then(function (data) {
                     vm.user = data.data;
                 });
-
         }
 
     });

@@ -19,7 +19,7 @@ var ImagesSchema = new Schema({
     timeRequest: String,
     image: { data: Buffer, contentType: String },
     datasrc: String,
-    created: { type: Date, defauly: Date.now}
+    created: { type: Date, default: Date.now}
 
 });
 

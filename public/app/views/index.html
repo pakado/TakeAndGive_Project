@@ -68,7 +68,7 @@
                         <li ng-show="main.loggedIn"><div ng-bind="'Hello '+main.user.username" class="navbar-brand"></div></li>
                         <li ng-show="main.loggedIn"><a><i>{{main.user.connectTime | date:"MM/dd/yyyy 'at' h:mma"}}</i></a></li>
                         <!--<li ng-show="main.loggedIn"><a href="/chat"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>-->
-                        <li ng-show="main.loggedIn"><a href="#/chatApp"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>
+                        <li ng-show="main.loggedIn"><a href="#/chat"><i class="fa fa-comment fa-lg" title="Chat"></i>&nbsp;Chat</a></li>
                         <li ng-show="main.loggedIn"><a href="#/profile"><i class="fa fa-user fa-lg" title="Profile"></i>&nbsp;Profile</a></li>
                         <li ng-show="main.loggedIn"><a href="#/myStuff"><i class="fa fa-upload fa-lg" title="Upload My Stuff"></i>&nbsp;Upload My Stuff</a></li>
                         <li ng-show="main.loggedIn"><a href="#/permission"><i class="fa fa-thumbs-o-up fa-lg" title="Permission"></i>&nbsp;Permission</a></li>
@@ -128,15 +128,13 @@
 <script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/userCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/storyCtrl.js"></script>
-<!--<script type="text/javascript" src="app/controllers/chatCtrl.js"></script>-->
-<script type="text/javascript" src="app/controllers/example.js"></script>
 <script type="text/javascript" src="app/controllers/fileUploadCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/cartCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/permissionCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/receiveCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/historyCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/rentingCtrl.js"></script>
-<script type="text/javascript" src="app/controllers/chatApp.js"></script>
+<script type="text/javascript" src="app/controllers/chatCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/emailCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/passwordResetCtrl.js"></script>
 <script type="text/javascript" src="app/app.routes.js"></script>

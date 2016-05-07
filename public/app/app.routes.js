@@ -32,11 +32,6 @@ angular
                 templateUrl: 'app/views/pages/signup.html',
                 controller: "UserCreateController as user"
             })
-            .state('chat', {
-                url: '/chat',
-                templateUrl: 'app/views/pages/chat.html',
-                controller: "chatCtrl as chat"
-            })
             .state('permission', {
                 url: '/permission',
                 templateUrl: 'app/views/pages/permission.html',
@@ -72,9 +67,9 @@ angular
                 templateUrl: 'app/views/pages/myStuff.html',
                 controller: "upController as up"
             })
-            .state('chatApp', {
-                url: '/chatApp',
-                templateUrl: 'app/views/pages/chatApp.html',
+            .state('chat', {
+                url: '/chat',
+                templateUrl: 'app/views/pages/chat.html',
                 controller: 'chatController as chat'
             })
             .state('forgetPassword', {

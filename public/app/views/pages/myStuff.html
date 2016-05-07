@@ -62,9 +62,9 @@
                 <option ng-show="up.isShoe" value="45">45</option>
             </select><br><br>
 
-            <input type="file" ngf-select ng-model="up.file" name="image"  accept="image/*"  ngf-max-size="1MB"
+            <input type="file" ngf-select ng-model="up.file" name="image"  accept="image/*"  ngf-max-size="7MB" resize-quality=".1"
                    style="height: 30px; padding-left: 55px;" required />
-            <input type="submit" value="Save Image" ng-click="up.submit()" class="btn btn-success"/><br><br><!--ng-mouseover="up.test()"-->
+            <input type="submit" value="Save Image" ng-click="up.uploadImage()" class="btn btn-success"/><br><br><!--ng-mouseover="up.test()"-->
 
         </form>
     </div>
@@ -72,13 +72,17 @@
     <div class="row">
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.category" placeholder="Category"/>
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.size" placeholder="Size"/>
-    </div></br>
-    <div class="img" ng-repeat="image in up.images | toArray | filter: search">
+    </div></br></br>
+    <div class="img" ng-repeat="image in up.images | toArray | filter: search"  ng-if="!up.noImage">
         <div>
             <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">
             <div class="desc">{{image.category}} - {{image.size}}</div>
+            <div>Upload on: {{image.created | date:"MM/dd/yyyy 'at' h:mma"}}</div>
             <div class="mButton"><button value="Delete" ng-click="up.delete(image._id)">Delete</button>
             <span>&nbsp;For: {{image.toUse}}</span></div>
         </div>
+    </div>
+    <div ng-if="up.noImage">
+        </br></br><h3>No items upload now</h3>
     </div>
 </div>

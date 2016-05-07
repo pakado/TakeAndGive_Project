@@ -99,6 +99,11 @@ validate = function(vm, status){
         vm.error = "No Name";
         return false;
     }
+    else if(vm.userData.city == "" || vm.userData.city == undefined){
+        console.log("Need to choose city");
+        vm.error = "Need to choose city";
+        return false;
+    }
 
    if(status == 'sign'){
         if(vm.userData.username == "" || vm.userData.username == undefined){
@@ -129,11 +134,6 @@ validate = function(vm, status){
         else if(vm.userData.country == "" || vm.userData.country == undefined){
             console.log("Need to choose country");
             vm.error = "Need to choose country";
-            return false;
-        }
-        else if(vm.userData.city == "" || vm.userData.city == undefined){
-            console.log("Need to choose city");
-            vm.error = "Need to choose city";
             return false;
         }
         else if(vm.userData.sex == "" || vm.userData.sex == undefined){

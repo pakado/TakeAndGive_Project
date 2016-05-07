@@ -3,11 +3,9 @@
  */
 
 angular.module('MyApp', ['uiRouterApp'
-    ,'mainCtrl','userCtrl','storyCtrl'
-    ,'example','fileUpload','cartCtrl'
-    ,'permissionCtrl','receiveCtrl','historyCtrl'
-    ,'rentingCtrl','chat','emailCtrl'
-    ,'directiveCollapseApp','angular-toArrayFilter'
+    ,'mainCtrl','userCtrl','storyCtrl','fileUpload','cartCtrl'
+    ,'permissionCtrl','receiveCtrl','historyCtrl','rentingCtrl'
+    ,'chatCtrl','emailCtrl','directiveCollapseApp','angular-toArrayFilter'
     ,'passwordResetCtrl'])
 
     .run(function($window, $location){
@@ -25,7 +23,7 @@ angular.module('MyApp', ['uiRouterApp'
 
         function timerIncrement(){
             idleTime = idleTime + 1;
-            if (idleTime > 2) { // 5 minutes
+            if (idleTime > 422) { // 5 minutes
                 var token = $window.localStorage.getItem('token');
                 if(token){
                     $window.localStorage.removeItem('token');
@@ -37,7 +35,7 @@ angular.module('MyApp', ['uiRouterApp'
         }
     })
     .config(function ($httpProvider,$compileProvider) {
-    $httpProvider.interceptors.push('AuthInterceptor');
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//);
+        $httpProvider.interceptors.push('AuthInterceptor');
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//);
 
 });

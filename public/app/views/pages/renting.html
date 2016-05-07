@@ -11,11 +11,12 @@
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.username" placeholder="From who"/>
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.category" placeholder="Category"/>
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.size" placeholder="Size"/>
-    </div></br>
+    </div></br></br>
     <div class="img" ng-repeat="image in renting.images | filter: search">
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
             <div class="desc">{{image.category}} - {{image.size}} - Renting from {{image.username}} </div>
+            <div>Time start from: {{image.timeRequest | date:"MM/dd/yyyy 'at' h:mma"}}</div>
             <div class="mButton">
                 <!-- <button value="toUse" >Delete</button>ng-click="receive.responseTrue(image._id)"-->
             </div>

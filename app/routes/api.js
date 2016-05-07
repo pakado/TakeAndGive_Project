@@ -111,8 +111,11 @@ api.post('/email',function(req, res){
           throw  err;
       }
       if (!user) {
-          res.send({message: "User do not exit"})
-      } else if (user) {
+              res.json({
+                  success: false,
+                  message: "User do not exist"
+             });
+      } else {
               var token = createToken(user);
               res.json({
                   success: true,
@@ -282,7 +285,7 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
     var image = new Images();
 
     // adds the fields coming from the request in the image object
-    if(req.body.category == undefined || req.body.toUse == undefined || req.body.size == undefined || req.file.size > 2000000){
+    if(req.body.category == undefined || req.body.toUse == undefined || req.body.size == undefined || req.file.size > 7000000){
         console.log("Missing parameter");
         res.redirect('/#/myStuffError');
     }else{
@@ -530,9 +533,13 @@ api.put('/updateImage/:_id', function(req, res){
                 }
                 else if(foundObject.status == 'Waiting for approval' && req.body.flag == '1'){//this for accept to request
                     if(foundObject.toUse == 'Delivery'){//for deliver
+                        var now = new Date();
+                        foundObject.timeRequest = Date.parse(now);
                         foundObject.status = 'receive';
                         foundObject.permission = "Yes";
                     }else{                              //for renting
+                        var now = new Date();
+                        foundObject.timeRequest = Date.parse(now);
                         foundObject.status = 'rented';
                         foundObject.permission = "Yes";
                     }

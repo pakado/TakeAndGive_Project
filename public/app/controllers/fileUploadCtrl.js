@@ -15,6 +15,7 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
         vm.allImages = {};
         vm.images = {};
         vm.isShoe = false;
+        vm.noImage = true;
         vm.error = location.hash;
         if(vm.error == "#/myStuffError"){
             vm.error = "the image it too big the size need to be less then 2 mb";
@@ -33,6 +34,7 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
                     else {
                         fileUpload.getAllImages(vm.imageDetails.username).success(function (data) {
                             if (data.length > 0) {
+                                vm.noImage = false;
                                 vm.allImages = data;
                             }
                         });
@@ -42,7 +44,7 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
 
         refresh();
 
-        vm.submit = function () { //function to call on form submit
+        vm.uploadImage = function () { //function to call on form submit
             vm.error = "";
 
             if (vm.imageDetails.toUse == "" || vm.imageDetails.toUse == undefined) {
@@ -90,7 +92,10 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
 
         vm.getImagesPerUser = function () {
             fileUpload.getAllImagesPerUser(vm.imageDetails.username).success(function (data) {
-                vm.images = data;
+                if (data.length > 0) {
+                    vm.noImage = false;
+                    vm.images = data;
+                }
             });
         };
 

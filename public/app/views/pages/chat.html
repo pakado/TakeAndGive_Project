@@ -1,274 +1,67 @@
-
-<html  >
+<!doctype html>
+<html>
 <head>
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
-    <script src='http://jquery-json.googlecode.com/files/jquery.json-2.2.min.js'></script>
-    <script src='http://datejs.googlecode.com/svn/trunk/build/date.js'></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        $(document).ready(function(){
-            // show join box
-            $('#ask').show();
-            $('#ask input').focus();
-
-            // join on enter
-            $('#ask input').keydown(function(event) {
-                if (event.keyCode == 13) {
-                    $('#ask a').click();
-                }
-            })
-
-            // join on click
-            $('#ask a').click(function() {
-                join($('#ask input').val());
-                $('#ask').hide();
-                $('#titleBar').show();
-                $('#content').show();
-                $('input#message').focus();
-            });
-
-            function generateUserName () {
-                return 'user_' + Math.floor((Math.random() * 1000) + 1) + Math.floor((Math.random() * 1000) + 1);
-            }
-
-            function join(name) {
-                var host = window.location.host.split(':')[0];
-                var socket = io.connect('http://' + host);
-
-                if (name === "") {
-                    name = generateUserName();
-                }
-
-                // send join message
-                socket.emit('join', $.toJSON({ user: name }));
-
-                var msgsContainer = $('div#msgs');
-                var roomContainer = $('div#room');
-
-                socket.on('onlineUsers', function(usersData) {
-                    var onlineUsers = $.evalJSON(usersData),
-                            struct = roomContainer.find('li.' + 'control' + ':first'),
-                            userView;
-
-                    if (struct.length < 1) {
-                        console.log('Could not handle Chat Room');
-                        return;
-                    }
-
-                    roomContainer.find('ul').empty();
-                    for (var i=0; i<onlineUsers.length; i++) {
-                        userView = struct.clone();
-                        userView.find('.name').text(onlineUsers[i].user);
-                        roomContainer.find('ul').append(userView.show());
-                    }
-                });
-
-                // handler to update chat messages
-                socket.on('chat', function (msg) {
-                    var message = $.evalJSON(msg),
-                            action = message.action,
-                            struct = msgsContainer.find('li.' + action + ':first'),
-                            messageView;
-
-                    // populate the chat message in the Chat Msgs arena
-
-                    if (struct.length < 1) {
-                        console.log("Could not handle: " + message);
-                        return;
-                    }
-
-                    // get a new message view from struct template
-                    messageView = struct.clone();
-
-                    // set time
-                    messageView.find('.time').text((new Date()).toString("HH:mm:ss"));
-
-                    switch (action) {
-                        case 'message':	messageView.find('.user').text(message.user);
-                            messageView.find('.message').text(': ' + message.msg);
-                            break;
-                        case 'control': messageView.find('.user').text(message.user);
-                            messageView.find('.message').text(message.msg);
-                            messageView.addClass('control');
-                            break;
-                    }
-
-                    // color own user:
-                    if (message.user == name) messageView.find('.user').addClass('self');
-
-                    // append to msgsContainer and scroll
-                    msgsContainer.find('ul').append(messageView.show());
-                    msgsContainer.scrollTop(msgsContainer.find('ul').innerHeight());
-                });
-
-                // send a new message
-                $('#channel form').submit(function(event) {
-                    event.preventDefault();
-                    var input = $(this).find(':input'),
-                            msg = input.val();
-                    socket.emit('chat', $.toJSON({action: 'message', user: name, msg: msg}));
-                    input.val('');
-                });
-            }
-        });
-    </script>
-
-    <style type="text/css" media="screen">
-        * {
-            font-family: "Helvetica-Neue";
-        }
-        a {
-            color: #0000FF;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        div.bordered {
-            margin: 0 auto;
-            width: 600px;
-            padding: 20px;
-            text-align: center;
-            border: 5px solid #bbbbbb;
-            -webkit-border-radius: 55px;
-        }
-        #error {
-            background-color: #BA0000;
-            color: #fff;
-            font-weight: bold;
-        }
-        #ask {
-            margin-top: 100px;
-            font-size: 20pt;
-        }
-        #ask input {
-            font-size: 20pt;
-            padding: 10px;
-            margin: 0 10px;
-        }
-        #ask span.join {
-            padding: 10px;
-            background-color: #ddd;
-            -webkit-border-radius: 10px;
-        }
-        #titleBar {
-            background-color: beige;
-            padding: 5px;
-            width: 98%;
-            height: 12%;
-            margin-top: 10px;
-        }
-        #content {
-            margin-top: 15px;
-            height:70%;
-        }
-        #room {
-            float: left;
-            height: 100%;
-            width: 20%;
-            margin-left: 5px;
-            display: inline-block;
-            text-align: right;
-            color: brown;
-        }
-        #channel {
-            margin-left: 15px;
-            width: 45%;
-            height: 100%;
-            position: relative;
-            display: inline-block;
-        }
-        #instructions {
-            float: right;
-            width: 20%;
-            height: 100%;
-            margin-left: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        div#msgs {
-            overflow-y: scroll;
-            height: 75%;
-        }
-        div#msgs ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: right;
-        }
-        div#msgs li {
-            line-height: 20px;
-        }
-        div#msgs li span.user {
-            color: #ff9900;
-        }
-        div#msgs li span.user.self {
-            color: #aa2211;
-        }
-        div#msgs li span.time {
-            float: left;
-            margin-right: 5px;
-            color: #aaa;
-            font-family: "Courier New";
-            font-size: 12px;
-        }
-        div#msgs li.control {
-            text-align: center;
-        }
-        div#msgs li.control span.message {
-            color: #aaa;
-        }
-        div#input {
-            text-align: left;
-            margin-top: 20px;
-        }
-        div#input #message {
-            width: 100%;
-            border: 5px solid #bbb;
-            -webkit-border-radius: 3px;
-            font-size: 30pt;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Private Chat</title>
+    <link rel="icon" type="image/png" href="favicon.ico"/>
+    <link rel="stylesheet" href="app/font-awesome/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href="app/css/style.css" rel="stylesheet">
 </head>
-<body>
-<div id="titleBar" class="bordered" style="display: none;">
-    <h1>Private & Public Chat</h1>
-</div>
-<div id="ask" class="bordered" style="display: none;">
-    Name: <input type="text" id="name" /> <a href="#"><span class="join">הצטרף</span></a>
-</div>
-<div dir='rtl' id="content" style="display: none;">
-    <div id="room" class="bordered">
-        <strong>משתמשים מחוברים</strong>
-        <ul>
-            <li class="control"><span class="name"></span></li>
-        </ul>
-    </div>
-    <div dir='rtl' id="channel" class="bordered">
-        <div dir='rtl' id="msgs">
-            <ul>
-                <li class="message" style="display: none">
-                    <span class="time"></span>
-                    <span class="user"></span><span class="message"></span>
+<body >
 
-                </li>
-                <li class="control" style="display: none">
-                    <span class="user"></span>&nbsp;<span class="message"></span>
-                    <span class="time"></span>
-                </li>
+<div ng-if="!main.loggedIn" class="col-sm-10 col-md-5 col-md-offset-5">
+    <il><a href="#/">Login Or SignUp Please</a></il>
+</div>
+
+<div  ng-if="main.loggedIn">
+    <h3>Private Chat - <span ng-bind="chat.user.username"></span></h3>
+
+    <!--<div ng-if="!chat.isNameAssigned()">
+        <form ng-submit="chat.signup()" name="signupForm"  class="signup">
+            Name: <input type="text" pattern="[a-zA-Z0-9_-]{4,10}" placeholder="only alpha-numeric [min 4 char]" name="userName" ng-model="chat.userName" required/><br />
+            E-mail: <input type="email" name="userEmail" ng-model="chat.userEmail" required/><br />
+            <button type="submit">Submit</button><br /><br />
+            <span>Hi {{userName}}</span>
+        </form>
+    </div>-->
+
+    <div id='body'>
+        <div id="header">
+            <i class="fa fa-arrow-left"></i>
+            <span>{{chat.patner}}</span>
+            <i class="fa fa-edit"></i>
+        </div>
+
+        <div id='room-list'>
+            <h3>Online Users</h3>
+            <div ng-if="!chat.isNameAssigned()">
+                <h3 ng-class="onlineli">No users</h3>
+            </div>
+            <ul ng-if="chat.isNameAssigned()">
+                <li ng-repeat="user in chat.onlineUsers track by $index | notMe:this" ng-click="chat.patnerSelected(user);" ng-class="onlineli">{{user}}</li>
             </ul>
         </div>
-        <div  id="input">
-            <form><input type="text"  dir='rtl'id="message" /></form>
+
+        <div id='container'>
+            <ul>
+                <li name="chatbox" ng-repeat="msg in chat.msgs track by $index" setfocus="$last" ng-class="msg.sender === chat.name ? 'right' : 'left'">
+                    <span>{{msg.text}}</span>
+                </li>
+            </ul>
+            <a href="" id="bottom"></a>
         </div>
-    </div>
-    <div dir='rtl' id="instructions" class="bordered" style="text-align: left;">
 
-        <p>1. <strong>Private Chat</strong> - Use @UserName as first word to chat privately with one.</p>
-        <p>2. <strong>מי אני</strong> - הכינוי שלך בצט</p>
-
-
+        <form class='footer' ng-submit="chat.sendMsg()" action="" name ="textbox">
+            <input id='send-message' type="text" name="msgText" ng-model="chat.msgText"/>
+            <input type="submit" value="Send"/>
+        </form>
+        <!--<div class="alert-danger" ng-bind="chat.error"></div>-->
     </div>
 </div>
+<script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

@@ -5,11 +5,11 @@
 
 <div class="container" ng-if="main.loggedIn">
     <form  class="col-sm-6 col-md-3 col-md-offset-4">
-        <h1>Profile</h1>
+        <h1>Profile</h1></br>
         User Name:<input type="text" class="form-control" ng-model="changeDetails.userData.username" placeholder="User Name" disabled><br>
         Name:<input type="text" class="form-control" ng-model="changeDetails.userData.name" palceHolder="Name"><br>
         Email:<input type="email" class="form-control" ng-model="changeDetails.userData.email" palceHolder="Email"><br>
-        <select name="city" ng-model="changeDetails.userData.city">
+        <select name="city" ng-model="changeDetails.userData.city" style="width: 252px;height: 32px;">
             <option value="">{{changeDetails.user.city}}</option> <!-- not selected / blank option -->
             <option value='Acre'>Acre</option>
             <option value='Afula'>Afula</option>

@@ -10,11 +10,12 @@
     <div class="row">
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.toUse" placeholder="Purpose"/>
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.userRequest" placeholder="Who Request"/>
-    </div></br>
+    </div></br></br>
     <div class="img" ng-repeat="image in history.images | filter: search">
         <div class="images">
             <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
-            <div class="desc">{{image.category}} - {{image.size}} - {{image.toUse}} to {{image.userRequest}}  </div>
+            <div class="desc">{{image.category}} - {{image.size}} - {{image.toUse}} to {{image.userRequest}}</div>
+            <div>Time: {{image.timeRequest | date:"MM/dd/yyyy 'at' h:mma"}}</div>
             <div class="mButton">
             </div>
         </div>
