@@ -4,92 +4,96 @@
 </div>
 
 <div class="container" ng-if="main.loggedIn">
-    <form  class="col-sm-6 col-md-3 col-md-offset-4">
-        <h1>Profile</h1></br>
-        User Name:<input type="text" class="form-control" ng-model="changeDetails.userData.username" placeholder="User Name" disabled><br>
-        Name:<input type="text" class="form-control" ng-model="changeDetails.userData.name" palceHolder="Name"><br>
-        Email:<input type="email" class="form-control" ng-model="changeDetails.userData.email" palceHolder="Email"><br>
-        <select name="city" ng-model="changeDetails.userData.city" style="width: 252px;height: 32px;">
-            <option value="">{{changeDetails.user.city}}</option> <!-- not selected / blank option -->
-            <option value='Acre'>Acre</option>
-            <option value='Afula'>Afula</option>
-            <option value='Arad'>Arad</option>
-            <option value='Arielb'>Arielb</option>
-            <option value='Ashdod'>Ashdod</option>
-            <option value='Ashkelon'>Ashkelon</option>
-            <option value='Bat Yam'>Bat Yam</option>
-            <option value='Beershebae'>Beershebae</option>
-            <option value='Beit Sheanf'>Beit She'anf</option>
-            <option value='Beit Shemeshg'>Beit Shemeshg</option>
-            <option value='Beitar Illit'>Beitar Illit</option>
-            <option value='Bnei Brakh'>Bnei Brakh</option>
-            <option value='Dimona'>Dimona</option>
-            <option value='Eilatj'>Eilatj</option>
-            <option value='Elad'>El'ad</option>
-            <option value='Givat Shmuel'>Giv'at Shmuel</option>
-            <option value='Givatayim'>Givatayim</option>
-            <option value='Hadera'>Hadera</option>
-            <option value='Haifa'>Haifa</option>
-            <option value='Herzliyak'>Herzliyak</option>
-            <option value='Hod HaSharon'>Hod HaSharon</option>
-            <option value='Holon'>Holon</option>
-            <option value='Jerusalem'>Jerusalem</option>
-            <option value='Karmiell'>Karmiell</option>
-            <option value='Kfar Saba'>Kfar Sabao</option>
-            <option value='Kfar Yona'>Kfar Yona</option>
-            <option value='Kiryat Ata'>Kiryat Ata</option>
-            <option value='Kiryat Bialikq'>Kiryat Bialikq</option>
-            <option value='Kiryat Gat'>Kiryat Gat</option>
-            <option value='Kiryat Malakhis'>Kiryat Malakhis</option>
-            <option value='Kiryat Motzkint'>Kiryat Motzkint</option>
-            <option value='Kiryat Onou'>Kiryat Onou</option>
-            <option value='Kiryat Shmonav'>Kiryat Shmonav</option>
-            <option value='Kiryat Yam'>Kiryat Yamw</option>
-            <option value='Lod'>Lod</option>
-            <option value='Maale Adumim'>Ma'ale Adumim</option>
-            <option value='Maalot-Tarshih'>Ma'alot-Tarshiha</option>
-            <option value='Migdal HaEmekx'>Migdal HaEmekx</option>
-            <option value='Modiin Illit'>Modi'in Illit</option>
-            <option value='Modiin-Maccabim-Reut'>Modi'in-Maccabim-Re'ut</option>
-            <option value='Nahariyaz'>Nahariyaz</option>
-            <option value='Nazareth'>Nazareth</option>
-            <option value='Nazareth Illitaa'>Nazareth Illitaa</option>
-            <option value='Nesher'>Nesher</option>
-            <option value='Ness Zionaab'>Ness Zionaab</option>
-            <option value='Netanya'>Netanya</option>
-            <option value='Netivot'>Netivot</option>
-            <option value='Ofakimac'>Ofakimac</option>
-            <option value='Or Akivaad'>Or Akivaad</option>
-            <option value='Or Yehuda'>Or Yehuda</option>
-            <option value='Central'>Petah Tikvaae</option>
-            <option value='Petah Tikvaae'>Qalansawe</option>
-            <option value='Raanana'>Ra'anana</option>
-            <option value='Rahat'>Rahat</option>
-            <option value='Ramat Gan'>Ramat Gan</option>
-            <option value='Ramat HaSharon'>Ramat HaSharon</option>
-            <option value='Ramla'>Ramla</option>
-            <option value='Rehovot'>Rehovot</option>
-            <option value='Rishon LeZionaf'>Rishon LeZionaf</option>
-            <option value='Rosh HaAyin'>Rosh HaAyin</option>
-            <option value='Safedag'>Safedag</option>
-            <option value='Sakhnin'>Sakhnin</option>
-            <option value='Sderotah'>Sderotah</option>
-            <option value='Shefa-Amr'>Shefa-'Amr</option>
-            <option value='Tamra'>Tamra</option>
-            <option value='Tayibe'>Tayibe</option>
-            <option value='Tel Aviva'>Tel Aviva</option>
-            <option value='Tiberias'>Tiberias</option>
-            <option value='Tira'>Tira</option>
-            <option value='Tirat Carmelak'>Tirat Carmelak</option>
-            <option value='Umm al-Fahm'>Umm al-Fahm</option>
-            <option value='Yavne'>Yavne</option>
-            <option value='Yehud'>Yehud</option>
-            <option value='Yokneam'>Yokneam</option>
-        </select></br></br>
-        Old Password:<input type="password" class="form-control" ng-model="changeDetails.userData.oldPassword" placeholder="Old Password"><br>
-        New Password:<input type="password" class="form-control" ng-model="changeDetails.userData.newPassword" placeholder="New Password"><br>
-        Confrim Password:<input type="password" class="form-control" ng-model="changeDetails.userData.confrimPassword" placeholder="confrim Password"><br>
-        <button ng-click="changeDetails.changeDetails()" class="btn btn-success" >Change Details</button><br><br>
-        <strong><span class="alert-success" ng-bind="changeDetails.error"></span></strong>
-    </form>
+    <div class="row">
+    <div class="col-sm-6 col-lg-3 col-md-offset-4">
+        <form class="form-sigin">
+            <h1>Profile</h1></br>
+            User Name:<input type="text" class="form-control" ng-model="changeDetails.userData.username" placeholder="User Name" disabled><br>
+            Name:<input type="text" class="form-control" ng-model="changeDetails.userData.name" palceHolder="Name"><br>
+            Email:<input type="email" class="form-control" ng-model="changeDetails.userData.email" palceHolder="Email"><br>
+            City:<select name="city" ng-model="changeDetails.userData.city" style="width: 263px;height: 32px;">
+                <option value="">{{changeDetails.user.city}}</option> <!-- not selected / blank option -->
+                <option value='Acre'>Acre</option>
+                <option value='Afula'>Afula</option>
+                <option value='Arad'>Arad</option>
+                <option value='Arielb'>Arielb</option>
+                <option value='Ashdod'>Ashdod</option>
+                <option value='Ashkelon'>Ashkelon</option>
+                <option value='Bat Yam'>Bat Yam</option>
+                <option value='Beershebae'>Beershebae</option>
+                <option value='Beit Sheanf'>Beit She'anf</option>
+                <option value='Beit Shemeshg'>Beit Shemeshg</option>
+                <option value='Beitar Illit'>Beitar Illit</option>
+                <option value='Bnei Brakh'>Bnei Brakh</option>
+                <option value='Dimona'>Dimona</option>
+                <option value='Eilatj'>Eilatj</option>
+                <option value='Elad'>El'ad</option>
+                <option value='Givat Shmuel'>Giv'at Shmuel</option>
+                <option value='Givatayim'>Givatayim</option>
+                <option value='Hadera'>Hadera</option>
+                <option value='Haifa'>Haifa</option>
+                <option value='Herzliyak'>Herzliyak</option>
+                <option value='Hod HaSharon'>Hod HaSharon</option>
+                <option value='Holon'>Holon</option>
+                <option value='Jerusalem'>Jerusalem</option>
+                <option value='Karmiell'>Karmiell</option>
+                <option value='Kfar Saba'>Kfar Sabao</option>
+                <option value='Kfar Yona'>Kfar Yona</option>
+                <option value='Kiryat Ata'>Kiryat Ata</option>
+                <option value='Kiryat Bialikq'>Kiryat Bialikq</option>
+                <option value='Kiryat Gat'>Kiryat Gat</option>
+                <option value='Kiryat Malakhis'>Kiryat Malakhis</option>
+                <option value='Kiryat Motzkint'>Kiryat Motzkint</option>
+                <option value='Kiryat Onou'>Kiryat Onou</option>
+                <option value='Kiryat Shmonav'>Kiryat Shmonav</option>
+                <option value='Kiryat Yam'>Kiryat Yamw</option>
+                <option value='Lod'>Lod</option>
+                <option value='Maale Adumim'>Ma'ale Adumim</option>
+                <option value='Maalot-Tarshih'>Ma'alot-Tarshiha</option>
+                <option value='Migdal HaEmekx'>Migdal HaEmekx</option>
+                <option value='Modiin Illit'>Modi'in Illit</option>
+                <option value='Modiin-Maccabim-Reut'>Modi'in-Maccabim-Re'ut</option>
+                <option value='Nahariyaz'>Nahariyaz</option>
+                <option value='Nazareth'>Nazareth</option>
+                <option value='Nazareth Illitaa'>Nazareth Illitaa</option>
+                <option value='Nesher'>Nesher</option>
+                <option value='Ness Zionaab'>Ness Zionaab</option>
+                <option value='Netanya'>Netanya</option>
+                <option value='Netivot'>Netivot</option>
+                <option value='Ofakimac'>Ofakimac</option>
+                <option value='Or Akivaad'>Or Akivaad</option>
+                <option value='Or Yehuda'>Or Yehuda</option>
+                <option value='Central'>Petah Tikvaae</option>
+                <option value='Petah Tikvaae'>Qalansawe</option>
+                <option value='Raanana'>Ra'anana</option>
+                <option value='Rahat'>Rahat</option>
+                <option value='Ramat Gan'>Ramat Gan</option>
+                <option value='Ramat HaSharon'>Ramat HaSharon</option>
+                <option value='Ramla'>Ramla</option>
+                <option value='Rehovot'>Rehovot</option>
+                <option value='Rishon LeZionaf'>Rishon LeZionaf</option>
+                <option value='Rosh HaAyin'>Rosh HaAyin</option>
+                <option value='Safedag'>Safedag</option>
+                <option value='Sakhnin'>Sakhnin</option>
+                <option value='Sderotah'>Sderotah</option>
+                <option value='Shefa-Amr'>Shefa-'Amr</option>
+                <option value='Tamra'>Tamra</option>
+                <option value='Tayibe'>Tayibe</option>
+                <option value='Tel Aviva'>Tel Aviva</option>
+                <option value='Tiberias'>Tiberias</option>
+                <option value='Tira'>Tira</option>
+                <option value='Tirat Carmelak'>Tirat Carmelak</option>
+                <option value='Umm al-Fahm'>Umm al-Fahm</option>
+                <option value='Yavne'>Yavne</option>
+                <option value='Yehud'>Yehud</option>
+                <option value='Yokneam'>Yokneam</option>
+            </select></br></br>
+            Old Password:<input type="password" class="form-control" ng-model="changeDetails.userData.oldPassword" placeholder="Old Password"><br>
+            New Password:<input type="password" class="form-control" ng-model="changeDetails.userData.newPassword" placeholder="New Password"><br>
+            Confrim Password:<input type="password" class="form-control" ng-model="changeDetails.userData.confrimPassword" placeholder="confrim Password"><br>
+            <button ng-click="changeDetails.changeDetails()" class="btn btn-success" >Change Details</button><br><br>
+            <strong><span class="alert-success" ng-bind="changeDetails.error"></span></strong>
+        </form>
+    </div>
+    </div>
 </div>
