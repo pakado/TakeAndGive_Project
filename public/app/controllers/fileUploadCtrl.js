@@ -64,18 +64,9 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
                 vm.error = "Need to choose size";
                 return;
             }
-
-            else if (/*vm.upload_form.file.$valid && */vm.file) { //check if from is valid
-                //vm.upload(vm.file); //call upload function
-                vm.error = "";
-            }
             else if(vm.file == undefined){
-                vm.error = "the image it too big the size need to be less then 2 mb";
-                return;
-            }
-
-            else {
                 vm.error = "Need to choose image to upload";
+                return;
             }
         };
 
@@ -98,6 +89,8 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
             fileUpload.getAllImagesPerUser(vm.imageDetails.username).success(function (data) {
                 if (data.length > 0) {
                     vm.noImage = false;
+                    vm.images = data;
+                }else{
                     vm.images = data;
                 }
             });
