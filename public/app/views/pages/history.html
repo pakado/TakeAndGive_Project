@@ -13,7 +13,7 @@
     </div></br></br>
     <div class="img" ng-repeat="image in history.images | filter: search">
         <div class="images">
-            <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
+            <img class="main-img" data-ng-src="{{image.datasrc}}">
             <div class="desc">{{image.category}} - {{image.size}} - {{image.toUse}} to {{image.userRequest}}</div>
             <div>Time: {{image.timeRequest | date:"MM/dd/yyyy 'at' h:mma"}}</div>
             <div class="mButton">

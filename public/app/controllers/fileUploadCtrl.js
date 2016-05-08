@@ -79,6 +79,10 @@ angular.module('fileUpload', ['ngFileUpload','fileUploadService'])
             }
         };
 
+        vm.resize = function(dataURL){
+            vm.imageDetails.dataURL = dataURL;
+            vm.uploadImage();
+        };
         vm.isShoes = function(){
             if( vm.imageDetails.category == "Shoes Women" ||  vm.imageDetails.category == "Shoes Men"){
                 vm.isShoe = true;

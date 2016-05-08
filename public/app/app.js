@@ -6,7 +6,7 @@ angular.module('MyApp', ['uiRouterApp'
     ,'mainCtrl','userCtrl','storyCtrl','fileUpload','cartCtrl'
     ,'permissionCtrl','receiveCtrl','historyCtrl','rentingCtrl'
     ,'chatCtrl','emailCtrl','directiveCollapseApp','angular-toArrayFilter'
-    ,'passwordResetCtrl'])
+    ,'passwordResetCtrl','imageupload'])
 
     .run(function($window, $location){
         var idleTime = 0;

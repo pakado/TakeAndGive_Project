@@ -24,7 +24,7 @@
     </div></br></br>
     <div class="img" ng-repeat="image in up.allImages | toArray | filter: search" ng-if="!up.noImage">
         <div class="images">
-            <img class="main-img" data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}">
+            <img class="main-img" data-ng-src="{{image.datasrc}}">
             <div class="desc">{{image.category}} - {{image.size}} - {{image.username}} - {{image.city}}</div>
             <div>Upload on: {{image.created | date:"MM/dd/yyyy 'at' h:mma"}}</div>
             <div class="mButton"><button value="toUse" ng-click="up.addToCart(image._id)">{{image.toUse}}</button></div>

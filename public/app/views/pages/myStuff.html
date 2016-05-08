@@ -9,7 +9,7 @@
         <h1>Upload Your Stuff Here</h1>
         <b class="alert-danger" ng-bind="up.error"></b><br>
 
-        <form method="post" action="/api/image" enctype="multipart/form-data" class="col-sm-6 col-md-4 col-md-offset-4" >
+        <form name="contactform" method="post" action="/api/image" enctype="multipart/form-data" class="col-sm-6 col-md-4 col-md-offset-4" >
             <!--Single Image with validations-->
 
             <input class="from-control"  type="text" name="country" placeholder="user country" ng-model="main.user.country" hidden>
@@ -18,12 +18,14 @@
             <input class="from-control"  type="text" name="toUse" placeholder="category" ng-model="up.imageDetails.toUse" hidden>
             <input class="from-control"  type="text" name="category" placeholder="category" ng-model="up.imageDetails.category" hidden>
             <input class="from-control"  type="text" name="size" placeholder="size" ng-model="up.imageDetails.size" hidden>
+            <input class="from-control"  type="text" name="dataURL" ng-model="up.imageDetails.dataURL" hidden>
 
             <select class="from-control" ng-model="up.imageDetails.toUse">
                 <option value="">---Please select the purpose---</option> <!-- not selected / blank option -->
                 <option value="Renting">Renting</option>
                 <option value="Delivery">Delivery</option>
             </select><br>
+
             <select class="from-control" ng-model="up.imageDetails.category" ng-change="up.isShoes();" required>
                 <option value="">---Please select category---</option> <!-- not selected / blank option -->
                 <option value="Accessories">Accessories</option>
@@ -61,13 +63,20 @@
                 <option ng-show="up.isShoe" value="44">44</option>
                 <option ng-show="up.isShoe" value="45">45</option>
             </select><br><br>
-
-            <input type="file" ngf-select ng-model="up.file" name="image"  accept="image/*"  ngf-max-size="7MB" resize-quality=".1"
+            <input type="file" ngf-select
+                   name="image"
+                   image="image"
+                   accept="image/*"
+                   ngf-max-size="7MB"
+                   resize-max-height="300"
+                   resize-max-width="250"
+                   resize-quality="0.7"
                    style="height: 30px; padding-left: 55px;" required />
-            <input type="submit" value="Save Image" ng-click="up.uploadImage()" class="btn btn-success"/><br><br><!--ng-mouseover="up.test()"-->
-
+            <img ng-show="image" ng-src="{{image.resized.dataURL}}"/>
+            <div ng-show="image"></br></div>
+            <input type="submit" value="Save Image" ng-click="up.resize(image.resized.dataURL)" class="btn btn-success"/><br><br>
         </form>
-    </div>
+      </div>
     <b> Search By </b><br><br>
     <div class="row">
         <input type="text" class=".col-md-3 .col-md-offset-3" ng-model="search.category" placeholder="Category"/>
@@ -75,7 +84,8 @@
     </div></br></br>
     <div class="img" ng-repeat="image in up.images | toArray | filter: search"  ng-if="!up.noImage">
         <div>
-            <img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">
+            <img data-ng-src="{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">
+            <!--<img data-ng-src="data:{{image.image.contentType}};base64,{{image.datasrc}}" class="img-thumbnail" alt="Fjords" width="300" height="200">-->
             <div class="desc">{{image.category}} - {{image.size}}</div>
             <div>Upload on: {{image.created | date:"MM/dd/yyyy 'at' h:mma"}}</div>
             <div class="mButton"><button value="Delete" ng-click="up.delete(image._id)">Delete</button>

@@ -298,9 +298,11 @@ api.post('/image', multer({ dest: './public/uploads' }).single('image'), functio
         image.permission = "No";
         image.city = req.body.city;
         image.country = req.body.country;
-        image.datasrc = fs.readFileSync(req.file.path).toString('base64');
+        image.datasrc = req.body.dataURL;
+        //image.datasrc = fs.readFileSync(req.file.path).toString('base64');
         //image.image.data = fs.readFileSync(req.file.path).toString('base64');
-        image.image.contentType = req.file.mimetype;
+        image.image.contentType = "image/png";
+        //image.image.contentType = req.file.mimetype;
 
         // save image
         image.save(function(err) {
